@@ -1,3 +1,4 @@
+package diadia;
 
 
 import java.util.Scanner;
