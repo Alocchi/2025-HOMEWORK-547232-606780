@@ -30,9 +30,11 @@ public class DiaDia {
 	static final private String[] ELENCO_COMANDI = {"vai", "aiuto", "fine"};
 
 	private Partita partita;
+	private Labirinto labirinto;
 
 	public DiaDia() {
-		this.partita = new Partita();
+		this.labirinto = new Labirinto();
+		this.partita = new Partita(labirinto.getEntrata(), labirinto.getUscita());
 	}
 
 	public void gioca() {
@@ -40,7 +42,8 @@ public class DiaDia {
 		Scanner scannerDiLinee;
 
 		System.out.println(MESSAGGIO_BENVENUTO);
-		scannerDiLinee = new Scanner(System.in);		
+		scannerDiLinee = new Scanner(System.in);
+		System.out.println("\nInizi in " + partita.getStanzaCorrente().getDescrizione());
 		do		
 			istruzione = scannerDiLinee.nextLine();
 		while (!processaIstruzione(istruzione));
