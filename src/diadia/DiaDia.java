@@ -30,10 +30,12 @@ public class DiaDia {
 	static final private String[] ELENCO_COMANDI = {"vai", "aiuto", "fine"};
 
 	private Partita partita;
-	//private Labirinto labirinto;
 
-	public DiaDia() {
-		//this.labirinto = new Labirinto();
+	public DiaDia(int pesoMax){
+		this.partita = new Partita(pesoMax);
+	}
+	
+	public DiaDia(){
 		this.partita = new Partita();
 	}
 
@@ -73,7 +75,7 @@ public class DiaDia {
 		if (this.partita.vinta()) {
 			System.out.println("Hai vinto!");
 		}
-		if(this.partita.getCfu() == 0) {
+		if(this.partita.getGiocatore().getCfu() == 0) {
 			System.out.println("Hai perso!");
 		}
 		return this.partita.isFinita();
@@ -107,8 +109,8 @@ public class DiaDia {
 
 			else {
 				this.partita.setStanzaCorrente(prossimaStanza);
-				int cfu = this.partita.getCfu() - 1;
-				this.partita.setCfu(cfu);
+				int cfu = this.partita.getGiocatore().getCfu() - 1;
+				this.partita.getGiocatore().setCfu(cfu);
 			}
 		}
 		System.out.println(partita.getStanzaCorrente().getDescrizione());

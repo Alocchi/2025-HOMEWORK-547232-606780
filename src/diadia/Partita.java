@@ -9,22 +9,28 @@ package diadia;
  */
 
 public class Partita {
-
-	static final private int CFU_INIZIALI = 20;
 	
 	private Labirinto labirinto;
 	private Stanza stanzaCorrente;
 	private Stanza stanzaVincente;
 	private boolean finita;
-	private int cfu;
+	private Giocatore giocatore;
 	
-	public Partita(){
+	public Partita(int pesoMax){
 		this.labirinto = new Labirinto();
+		this.giocatore = new Giocatore(pesoMax);
 		this.stanzaCorrente = this.labirinto.getEntrata();
 		this.stanzaVincente = this.labirinto.getUscita();		
 		this.finita = false;
-		this.cfu = CFU_INIZIALI;
 	}
+	
+	public Partita(){
+		this.labirinto = new Labirinto();
+		this.giocatore = new Giocatore();
+		this.stanzaCorrente = this.labirinto.getEntrata();
+		this.stanzaVincente = this.labirinto.getUscita();		
+		this.finita = false;
+	}	
 
 	public Stanza getStanzaVincente() {
 		return stanzaVincente;
@@ -51,7 +57,7 @@ public class Partita {
 	 * @return vero se partita finita
 	 */
 	public boolean isFinita() {
-		return finita || vinta() || (cfu == 0);
+		return finita || vinta() || (giocatore.getCfu() == 0);
 	}
 
 	/**
@@ -62,11 +68,7 @@ public class Partita {
 		this.finita = true;
 	}
 
-	public int getCfu() {
-		return this.cfu;
+	public Giocatore getGiocatore() {
+		return this.giocatore;
 	}
-
-	public void setCfu(int cfu) {
-		this.cfu = cfu;		
-	}	
 }
