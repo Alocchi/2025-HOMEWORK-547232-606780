@@ -18,7 +18,7 @@ public class Partita {
 	private boolean finita;
 	private int cfu;
 	
-	public Partita(Stanza entrata, Stanza uscita){
+	public Partita(){
 		this.labirinto = new Labirinto();
 		this.stanzaCorrente = this.labirinto.getEntrata();
 		this.stanzaVincente = this.labirinto.getUscita();		
