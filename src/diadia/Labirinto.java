@@ -40,25 +40,18 @@ public class Labirinto {
 		atrio.addAttrezzo(osso);
 
 		// il gioco comincia nell'atrio
-        this.setEntrata(atrio);  
-		this.setUscita(biblioteca);
+        this.entrata = atrio;  
+		this.uscita = biblioteca;
 		
 	}
 
 	public Stanza getEntrata() {
-		return entrata;
-	}
-
-	public void setEntrata(Stanza entrata) {
-		this.entrata = entrata;
+		return this.entrata;
 	}
 
 	public Stanza getUscita() {
-		return uscita;
+		return this.uscita;
 	}
 
-	public void setUscita(Stanza uscita) {
-		this.uscita = uscita;
-	}
 
 }
