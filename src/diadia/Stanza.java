@@ -12,7 +12,7 @@ package diadia;
 */
 
 public class Stanza {
-	
+	// hey
 	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
 	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
 	

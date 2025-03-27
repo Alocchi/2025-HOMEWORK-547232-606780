@@ -11,15 +11,17 @@ package diadia;
 public class Partita {
 
 	static final private int CFU_INIZIALI = 20;
-
+	
+	private Labirinto labirinto;
 	private Stanza stanzaCorrente;
 	private Stanza stanzaVincente;
 	private boolean finita;
 	private int cfu;
 	
 	public Partita(Stanza entrata, Stanza uscita){
-		this.stanzaCorrente = entrata;
-		this.stanzaVincente = uscita;		
+		this.labirinto = new Labirinto();
+		this.stanzaCorrente = this.labirinto.getEntrata();
+		this.stanzaVincente = this.labirinto.getUscita();		
 		this.finita = false;
 		this.cfu = CFU_INIZIALI;
 	}

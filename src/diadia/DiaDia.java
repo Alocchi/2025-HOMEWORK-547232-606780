@@ -30,11 +30,11 @@ public class DiaDia {
 	static final private String[] ELENCO_COMANDI = {"vai", "aiuto", "fine"};
 
 	private Partita partita;
-	private Labirinto labirinto;
+	//private Labirinto labirinto;
 
 	public DiaDia() {
-		this.labirinto = new Labirinto();
-		this.partita = new Partita(labirinto.getEntrata(), labirinto.getUscita());
+		//this.labirinto = new Labirinto();
+		this.partita = new Partita();
 	}
 
 	public void gioca() {
