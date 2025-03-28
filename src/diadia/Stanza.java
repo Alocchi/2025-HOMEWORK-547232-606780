@@ -125,6 +125,10 @@ public class Stanza {
     		if (direzione!=null)
     			risultato.append(" " + direzione);
     	risultato.append("\nAttrezzi nella stanza: ");
+    	
+    	//finchè si usano gli array, sapendo che l'array è compatto, possimao usare invece 
+    	//for(int i = 0; i < numeroAttrezzi; i++) e modificando la sintassi di conseguenza
+    	
     	for (Attrezzo attrezzo : this.attrezzi) {
     		if(attrezzo != null)
     			risultato.append(attrezzo.toString()+" ");
@@ -169,8 +173,15 @@ public class Stanza {
 	 * @param nomeAttrezzo
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
-	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		// TODO da implementare
+	public boolean removeAttrezzo(Attrezzo wanted) {
+		for(Attrezzo attrezzo: attrezzi){
+			if(attrezzo == wanted) {
+				attrezzo = this.attrezzi[this.numeroAttrezzi - 1];
+				this.attrezzi[this.numeroAttrezzi - 1] = null;
+				this.numeroAttrezzi--;
+				return true;
+			}
+		}
 		return false;
 	}
 
