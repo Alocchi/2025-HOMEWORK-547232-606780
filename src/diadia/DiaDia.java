@@ -27,7 +27,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] ELENCO_COMANDI = {"vai", "aiuto", "fine"};
+	static final private String[] ELENCO_COMANDI = {"vai", "aiuto", "prendi", "posa", "fine"};
 
 	private Partita partita;
 
@@ -66,9 +66,13 @@ public class DiaDia {
 		}
 		else if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine(); 
-		} else if (comandoDaEseguire.getNome().equals("vai"))
+		} else if (comandoDaEseguire.getNome().equals("vai")) {
 			this.vai(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("aiuto"))
+		} else if (comandoDaEseguire.getNome().equals("prendi")) {
+			this.prendi(comandoDaEseguire.getParametro());
+		} else if (comandoDaEseguire.getNome().equals("posa")) {
+			this.posa(comandoDaEseguire.getParametro());
+		} else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
 		else
 			System.out.println("Comando sconosciuto");
@@ -118,6 +122,33 @@ public class DiaDia {
 		}
 		System.out.println(partita);
 	}
+	
+	/**
+	 * Prendi un attrezzo dalla stanza corrente ed aggiungilo
+	 * alla borsa
+	 */
+	private void prendi(String wanted){
+		if(this.partita.getStanzaCorrente().hasAttrezzo(wanted)) {
+			this.partita.getGiocatore().getBorsa().addAttrezzo(this.partita.getStanzaCorrente().getAttrezzo(wanted));
+			this.partita.getStanzaCorrente().removeAttrezzo(this.partita.getStanzaCorrente().getAttrezzo(wanted));
+			System.out.println("hai preso " + wanted);
+			System.out.println(partita);
+		}
+	}
+	
+	/**
+	 * Prendi un attrezzo dalla borsa ed aggiungilo alla
+	 * stanza corrente
+	 */
+	private void posa(String wanted){
+		if(this.partita.getGiocatore().getBorsa().hasAttrezzo(wanted)) {
+			this.partita.getStanzaCorrente().addAttrezzo(this.partita.getGiocatore().getBorsa().getAttrezzo(wanted));
+			this.partita.getGiocatore().getBorsa().removeAttrezzo(wanted);
+			System.out.println("hai posato " + wanted);
+			System.out.println(partita);
+		}
+	}
+	
 	/**
 	 * Comando "Fine".
 	 */

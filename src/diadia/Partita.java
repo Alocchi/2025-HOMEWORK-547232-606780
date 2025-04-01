@@ -73,6 +73,6 @@ public class Partita {
 	}
 	
 	public String toString() {
-		return this.getStanzaCorrente() + "\nCFU rimanenti: " + giocatore.getCfu();
+		return this.getStanzaCorrente() + "\nCFU rimanenti: " + giocatore.getCfu() + "\n" + giocatore.getBorsa();
 	}
 }

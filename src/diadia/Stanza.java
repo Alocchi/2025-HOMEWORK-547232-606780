@@ -135,7 +135,7 @@ public class Stanza {
 	 * Controlla se un attrezzo esiste nella stanza (uguaglianza sul nome).
 	 * @return true se l'attrezzo esiste nella stanza, false altrimenti.
 	 */
-	public boolean hasAttrezzo(String nomeAttrezzo) {
+	public boolean hasAttrezzo(String nomeAttrezzo){
 		boolean trovato;
 		trovato = false;
 		for (int i = 0; i < numeroAttrezzi; i++) {
@@ -151,7 +151,7 @@ public class Stanza {
 	 * @return l'attrezzo presente nella stanza.
 	 * 		   null se l'attrezzo non e' presente.
 	 */
-	public Attrezzo getAttrezzo(String nomeAttrezzo) {
+	public Attrezzo getAttrezzo(String nomeAttrezzo){
 		Attrezzo attrezzoCercato;
 		attrezzoCercato = null;
 		for (int i = 0; i < numeroAttrezzi; i++) {
