@@ -1,7 +1,5 @@
 package it.uniroma3.diadia;
 
-import java.util.Scanner;
-
 import it.uniroma3.diadia.ambienti.Stanza;
 
 /**
@@ -31,24 +29,25 @@ public class DiaDia {
 	static final private String[] ELENCO_COMANDI = {"vai", "aiuto", "prendi", "posa", "fine"};
 
 	private Partita partita;
+	private IOConsole console;
 
-	public DiaDia(int pesoMax){
+	public DiaDia(IOConsole console, int pesoMax){
 		this.partita = new Partita(pesoMax);
+		this.console = console;
 	}
 	
-	public DiaDia(){
+	public DiaDia(IOConsole console){
 		this.partita = new Partita();
+		this.console = console;
 	}
 
 	public void gioca() {
 		String istruzione; 
-		Scanner scannerDiLinee;
 
-		System.out.println(MESSAGGIO_BENVENUTO);
-		scannerDiLinee = new Scanner(System.in);
-		System.out.println("\nInizi in " + partita.getStanzaCorrente().getDescrizione());
+		this.console.mostraMessaggio(MESSAGGIO_BENVENUTO);
+		this.console.mostraMessaggio("\nInizi in " + partita.getStanzaCorrente().getDescrizione());
 		do		
-			istruzione = scannerDiLinee.nextLine();
+			istruzione = this.console.leggiRiga();
 		while (!processaIstruzione(istruzione));
 	}   
 
@@ -63,7 +62,7 @@ public class DiaDia {
 		Comando comandoDaEseguire = new Comando(istruzione);
 
 		if(comandoDaEseguire.getNome() == null) {
-			System.out.println("Comando non valido");
+			this.console.mostraMessaggio("Comando non valido");
 		}
 		else if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine(); 
@@ -76,13 +75,13 @@ public class DiaDia {
 		} else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
 		else
-			System.out.println("Comando sconosciuto");
+			this.console.mostraMessaggio("Comando sconosciuto");
 		if(this.partita.isFinita()) {
 			if (this.partita.vinta()) {
-				System.out.println("Hai vinto!");
+				this.console.mostraMessaggio("Hai vinto!");
 			}
 			if(this.partita.getGiocatore().getCfu() == 0) {
-				System.out.println("Hai perso!");
+				this.console.mostraMessaggio("Hai perso!");
 			}
 			return true;
 		}
@@ -97,8 +96,8 @@ public class DiaDia {
 	 */
 	private void aiuto() {
 		for(String comando : ELENCO_COMANDI)
-			System.out.print(comando+"\n");
-		System.out.println();
+			this.console.mostraMessaggio(comando);
+		this.console.mostraMessaggio("\n");
 	}
 
 	/**
@@ -107,12 +106,12 @@ public class DiaDia {
 	 */
 	private void vai(String direzione) {
 		if(direzione==null)
-			System.out.println("Dove vuoi andare ?");
+			this.console.mostraMessaggio("Dove vuoi andare ?");
 		else {
 			Stanza prossimaStanza = null;
 			prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
 			if (prossimaStanza == null) {
-				System.out.println("Direzione inesistente");
+				this.console.mostraMessaggio("Direzione inesistente");
 			}
 
 			else {
@@ -121,7 +120,7 @@ public class DiaDia {
 				this.partita.getGiocatore().setCfu(cfu);
 			}
 		}
-		System.out.println(partita);
+		this.console.mostraMessaggio(this.partita.toString());
 	}
 	
 	/**
@@ -132,12 +131,12 @@ public class DiaDia {
 		if(this.partita.getStanzaCorrente().hasAttrezzo(wanted)) {
 			this.partita.getGiocatore().getBorsa().addAttrezzo(this.partita.getStanzaCorrente().getAttrezzo(wanted));
 			this.partita.getStanzaCorrente().removeAttrezzo(this.partita.getStanzaCorrente().getAttrezzo(wanted));
-			System.out.println("hai preso " + wanted);
-			System.out.println(partita);
+			this.console.mostraMessaggio("hai preso " + wanted);
+			this.console.mostraMessaggio(this.partita.toString());
 		}
 		else {
-			System.out.println("l'oggetto " + wanted + " non è in " + this.partita.getStanzaCorrente().getNome());
-			System.out.println(partita);
+			this.console.mostraMessaggio("l'oggetto " + wanted + " non è in " + this.partita.getStanzaCorrente().getNome());
+			this.console.mostraMessaggio(this.partita.toString());
 		}
 	}
 	
@@ -149,12 +148,12 @@ public class DiaDia {
 		if(this.partita.getGiocatore().getBorsa().hasAttrezzo(wanted)) {
 			this.partita.getStanzaCorrente().addAttrezzo(this.partita.getGiocatore().getBorsa().getAttrezzo(wanted));
 			this.partita.getGiocatore().getBorsa().removeAttrezzo(wanted);
-			System.out.println("hai posato " + wanted);
-			System.out.println(partita);
+			this.console.mostraMessaggio("hai posato " + wanted);
+			this.console.mostraMessaggio(this.partita.toString());
 		}
 		else {
-			System.out.println("l'oggetto " + wanted + " non è nella borsa ");
-			System.out.println(partita);
+			this.console.mostraMessaggio("l'oggetto " + wanted + " non è nella borsa ");
+			this.console.mostraMessaggio(this.partita.toString());
 		}
 	}
 	
@@ -163,11 +162,12 @@ public class DiaDia {
 	 */
 	private void fine() {
 		this.partita.setFinita();
-		System.out.println("Grazie di aver giocato!");  // si desidera smettere
+		this.console.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
 	}
 
 	public static void main(String[] argc) {
-		DiaDia gioco = new DiaDia();
+		IOConsole console = new IOConsole();
+		DiaDia gioco = new DiaDia(console);
 		gioco.gioca();
 	}
 }
