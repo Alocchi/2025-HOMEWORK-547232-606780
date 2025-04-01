@@ -134,6 +134,10 @@ public class DiaDia {
 			System.out.println("hai preso " + wanted);
 			System.out.println(partita);
 		}
+		else {
+			System.out.println("l'oggetto " + wanted + " non è in " + this.partita.getStanzaCorrente().getNome());
+			System.out.println(partita);
+		}
 	}
 	
 	/**
@@ -145,6 +149,10 @@ public class DiaDia {
 			this.partita.getStanzaCorrente().addAttrezzo(this.partita.getGiocatore().getBorsa().getAttrezzo(wanted));
 			this.partita.getGiocatore().getBorsa().removeAttrezzo(wanted);
 			System.out.println("hai posato " + wanted);
+			System.out.println(partita);
+		}
+		else {
+			System.out.println("l'oggetto " + wanted + " non è nella borsa ");
 			System.out.println(partita);
 		}
 	}
