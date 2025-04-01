@@ -58,9 +58,23 @@ public class Borsa {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
 
+	/**
+	 * Rimuove un attrezzo dalla borsa (ricerca in base al nome).
+	 * @param nomeAttrezzo
+	 * @return il riferimento all'attrezzo se presente, null altrimenti
+	 */
+	
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
-		// ---> TODO (implementare questo metodo) <---
+		for(int i = 0; i < this.numeroAttrezzi; i++) {
+			if(this.attrezzi[i].getNome() == nomeAttrezzo) {
+				a = this.attrezzi[i];
+				this.attrezzi[i] = this.attrezzi[this.numeroAttrezzi - 1];
+				this.attrezzi[this.numeroAttrezzi - 1] = null;
+				this.numeroAttrezzi--;
+				break;
+			}
+		}
 		return a;
 	}
 

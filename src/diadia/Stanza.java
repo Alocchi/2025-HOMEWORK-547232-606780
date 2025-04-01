@@ -10,7 +10,6 @@ package diadia;
  * @see Attrezzo
  * @version base
 */
- */
 
 public class Stanza {
 	
@@ -164,8 +163,8 @@ public class Stanza {
 	}
 
 	/**
-	 * Rimuove un attrezzo dalla stanza (ricerca in base al nome).
-	 * @param nomeAttrezzo
+	 * Rimuove un attrezzo dalla stanza (ricerca in base al riferimento dell'oggetto).
+	 * @param wanted riferimento all'oggetto da rimuovere
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo wanted) {

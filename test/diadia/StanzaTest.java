@@ -23,7 +23,7 @@ class StanzaTest {
 	}
 
 	@Test
-	void testHasAttrezzoEAddAttrezzo() {
+	void testAddAttrezzo() {
 		assertTrue(this.stanza.hasAttrezzo("attrezzo"));
 	}
 	
