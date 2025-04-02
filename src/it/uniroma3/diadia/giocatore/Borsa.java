@@ -66,18 +66,16 @@ public class Borsa {
 	 * @return il riferimento all'attrezzo se presente, null altrimenti
 	 */
 	
-	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
-		Attrezzo a = null;
+	public boolean removeAttrezzo(String nomeAttrezzo) {
 		for(int i = 0; i < this.numeroAttrezzi; i++) {
 			if(this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
-				a = this.attrezzi[i];
 				this.attrezzi[i] = this.attrezzi[this.numeroAttrezzi - 1];
 				this.attrezzi[this.numeroAttrezzi - 1] = null;
 				this.numeroAttrezzi--;
-				break;
+				return true;
 			}
 		}
-		return a;
+		return false;
 	}
 
 	public String toString() {
