@@ -1,4 +1,4 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
 import java.util.Scanner;
 
 /**
@@ -40,8 +40,8 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 			comando = new ComandoAiuto();
 		else if (nomeComando.equals("fine"))
 			comando = new ComandoFine();
-//		else if (nomeComando.equals("guarda"))
-//			comando = new ComandoGuarda();
+		else if (nomeComando.equals("guarda"))
+			comando = new ComandoGuarda();
 		else comando = new ComandoNonValido();
 		comando.setParametro(parametro);
 		

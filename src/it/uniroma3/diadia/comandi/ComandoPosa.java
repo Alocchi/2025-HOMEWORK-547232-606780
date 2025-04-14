@@ -1,4 +1,8 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
+
+import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.Partita;
 
 /**
  * Prendi un attrezzo dalla borsa ed aggiungilo alla
@@ -8,16 +12,15 @@ public class ComandoPosa implements Comando {
 	private String wanted;
 
 	@Override
-	public void esegui(Partita partita, IOConsole console) {
+	public void esegui(Partita partita, IO io) {
 		if(partita.getGiocatore().getBorsa().hasAttrezzo(this.wanted)) {
 			partita.getStanzaCorrente().addAttrezzo(partita.getGiocatore().getBorsa().getAttrezzo(this.wanted));
 			partita.getGiocatore().getBorsa().removeAttrezzo(this.wanted);
-			console.mostraMessaggio("hai posato " + this.wanted);
-			console.mostraMessaggio(partita.toString());
+			io.mostraMessaggio("hai posato " + this.wanted);
+			io.mostraMessaggio(partita.getGiocatore().getBorsa().toString());
 		}
 		else {
-			console.mostraMessaggio("l'oggetto " + this.wanted + " non è nella borsa ");
-			console.mostraMessaggio(partita.toString());
+			io.mostraMessaggio("l'oggetto " + this.wanted + " non è nella borsa ");
 		}
 	}
 
