@@ -43,13 +43,14 @@ class BorsaTest {
 	
 	@Test
 	void testRemoveAttrezzo() {
-		assertEquals(attrezzo, this.borsa.removeAttrezzo("attrezzo"));
+		assertTrue(this.borsa.removeAttrezzo("attrezzo"));
+		assertFalse(this.borsa.hasAttrezzo("attrezzo"));
 	}
 	
 	@Test
 	void testRemoveAttrezzoBorsaVuota() {
 		this.borsa.removeAttrezzo("attrezzo");
-		assertEquals(null, this.borsa.removeAttrezzo("attrezzo"));
+		assertFalse(this.borsa.removeAttrezzo("attrezzo"));
 	}
 	
 }

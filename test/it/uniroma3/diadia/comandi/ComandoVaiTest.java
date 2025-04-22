@@ -26,7 +26,7 @@ class ComandoVaiTest {
 	void testVaiSud() {
 		this.comando.setParametro("sud");
 		this.comando.esegui(partita, io);
-		assertEquals(this.partita.getStanzaCorrente(), "N10");
+		assertEquals(this.partita.getStanzaCorrente().getNome(), "Aula N10");
 		//da modificare una volta implementato IOSimulator
 	}
 	
