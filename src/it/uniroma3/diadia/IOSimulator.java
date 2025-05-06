@@ -12,7 +12,7 @@ public class IOSimulator implements IO{
 	}
 	
 	public IOSimulator() {
-		this.output = new String[10];
+		this.output = new String[100];
 		this.numeroElementi = 0;
 	}
 
@@ -35,6 +35,10 @@ public class IOSimulator implements IO{
 	
 	public String[] getInput() {
 		return this.input;
+	}
+	
+	public int getNumeroElementiOutput() {
+		return this.numeroElementi;
 	}
 
 }
