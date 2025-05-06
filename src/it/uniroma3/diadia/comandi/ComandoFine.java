@@ -20,4 +20,14 @@ public class ComandoFine implements Comando {
 		//questo comando non ha parametri
 	}
 
+	@Override
+	public String getNome() {
+		return "fine";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
+
 }

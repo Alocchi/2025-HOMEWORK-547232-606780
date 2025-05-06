@@ -15,5 +15,15 @@ public class ComandoGuarda implements Comando{
 	public void setParametro(String parametro) {
 		//questo comando non ha parametri
 	}
+
+	@Override
+	public String getNome() {
+		return "guarda";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
 	
 }

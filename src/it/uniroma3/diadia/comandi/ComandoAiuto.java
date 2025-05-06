@@ -24,4 +24,14 @@ public class ComandoAiuto implements Comando {
 		//questo comando non ha parametri
 	}
 
+	@Override
+	public String getNome() {
+		return "aiuto";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
+
 }

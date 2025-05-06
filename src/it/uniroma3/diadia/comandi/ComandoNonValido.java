@@ -16,4 +16,14 @@ public class ComandoNonValido implements Comando {
 		//questo comando non ha parametri
 	}
 
+	@Override
+	public String getNome() {
+		return "non valido";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
+
 }

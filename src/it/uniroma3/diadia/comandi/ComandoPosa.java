@@ -29,4 +29,14 @@ public class ComandoPosa implements Comando {
 		this.wanted = parametro;
 	}
 
+	@Override
+	public String getNome() {
+		return "posa";
+	}
+
+	@Override
+	public String getParametro() {
+		return wanted;
+	}
+
 }
