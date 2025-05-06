@@ -10,7 +10,7 @@ import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-class TestPrendi {
+class PrendiTest {
 	
 	private Comando comando;
 	private Partita partita;
