@@ -16,49 +16,49 @@ class FabbricaDiComandiFisarmonicaTest {
 	}
 
 	@Test
-	void testComandoVai() {
+	void testComandoVai() throws Exception {
 		this.comando = fabbrica.costruisciComando("vai sud");
 		assertEquals(this.comando.getNome(), "vai");
 		assertEquals(this.comando.getParametro(), "sud");
 	}
 	
 	@Test
-	void testComandoPrendi() {
+	void testComandoPrendi() throws Exception {
 		this.comando = fabbrica.costruisciComando("prendi spada");
 		assertEquals(this.comando.getNome(), "prendi");
 		assertEquals(this.comando.getParametro(), "spada");
 	}
 	
 	@Test
-	void testComandoPosa() {
+	void testComandoPosa() throws Exception {
 		this.comando = fabbrica.costruisciComando("posa spada");
 		assertEquals(this.comando.getNome(), "posa");
 		assertEquals(this.comando.getParametro(), "spada");
 	}
 	
 	@Test
-	void testComandoAiuto() {
+	void testComandoAiuto() throws Exception {
 		this.comando = fabbrica.costruisciComando("aiuto");
 		assertEquals(this.comando.getNome(), "aiuto");
 		assertNull(this.comando.getParametro());
 	}
 	
 	@Test
-	void testComandoFine() {
+	void testComandoFine() throws Exception {
 		this.comando = fabbrica.costruisciComando("fine");
 		assertEquals(this.comando.getNome(), "fine");
 		assertNull(this.comando.getParametro());
 	}
 	
 	@Test
-	void testComandoGuarda() {
+	void testComandoGuarda() throws Exception {
 		this.comando = fabbrica.costruisciComando("guarda");
 		assertEquals(this.comando.getNome(), "guarda");
 		assertNull(this.comando.getParametro());
 	}
 	
 	@Test
-	void testComandoNonValido() {
+	void testComandoNonValido() throws Exception {
 		this.comando = fabbrica.costruisciComando("aaaa");
 		assertEquals(this.comando.getNome(), "non valido");
 		assertNull(this.comando.getParametro());
