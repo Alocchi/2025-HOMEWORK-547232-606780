@@ -11,7 +11,7 @@ class DiaDiaTest {
 	private DiaDia diadia;
 	
 	@Test
-	void testPartitaVincente() throws Exception {
+	void testPartitaVincente() {
 		String[] input = new String[19];
 		input[0] = "vai sud";
 		input[1] = "prendi lanterna";
@@ -39,7 +39,7 @@ class DiaDiaTest {
 	}
 	
 	@Test
-	void testFineCFU() throws Exception {
+	void testFineCFU() {
 		String[] input = new String[20];
 		input[0] = "vai est";
 		input[1] = "vai est";
@@ -68,7 +68,7 @@ class DiaDiaTest {
 	}
 	
 	@Test
-	void testPartitaInterrotta() throws Exception {
+	void testPartitaInterrotta() {
 		String[] input = new String[1];
 		input[0] = "fine";
 		this.io = new IOSimulator(input);

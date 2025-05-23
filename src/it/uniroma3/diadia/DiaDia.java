@@ -1,7 +1,6 @@
 package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.comandi.Comando;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
 /**
@@ -41,7 +40,7 @@ public class DiaDia {
 		this.io = io;
 	}
 
-	public void gioca() throws Exception {
+	public void gioca(){
 		String istruzione; 
 
 		this.io.mostraMessaggio(MESSAGGIO_BENVENUTO);
@@ -59,7 +58,7 @@ public class DiaDia {
 	 * @throws Exception 
 	 */
 	
-	private boolean processaIstruzione(String istruzione) throws Exception {
+	private boolean processaIstruzione(String istruzione){
 		Comando comandoDaEseguire;
 		FabbricaDiComandiRiflessiva factory = new FabbricaDiComandiRiflessiva();
 		
@@ -77,7 +76,7 @@ public class DiaDia {
 	}
 
 
-	public static void main(String[] argc) throws Exception {
+	public static void main(String[] argc) {
 		IO io = new IOConsole();
 		DiaDia gioco = new DiaDia(io);
 		gioco.gioca();

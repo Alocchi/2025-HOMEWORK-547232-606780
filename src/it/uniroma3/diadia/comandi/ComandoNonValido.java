@@ -5,15 +5,17 @@ import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 
 public class ComandoNonValido implements Comando {
+	
+	private String messaggio;
 
 	@Override
 	public void esegui(Partita partita, IO io) {
-		io.mostraMessaggio("Comando non valido");
+		io.mostraMessaggio("Comando non valido\n" + messaggio);
 	}
 
 	@Override
 	public void setParametro(String parametro) {
-		//questo comando non ha parametri
+		this.messaggio = parametro;
 	}
 
 	@Override
@@ -23,7 +25,7 @@ public class ComandoNonValido implements Comando {
 
 	@Override
 	public String getParametro() {
-		return null;
+		return messaggio;
 	}
 
 }
