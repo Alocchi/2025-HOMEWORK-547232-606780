@@ -1,6 +1,5 @@
 package it.uniroma3.diadia.ambienti;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class Stanza {
 
 	private String nome;
-	private List<Attrezzo> attrezzi;
+	private Map<String, Attrezzo> attrezzi;
 	private Map<String, Stanza> stanzeAdiacenti;
 
 	/**
@@ -31,8 +30,7 @@ public class Stanza {
 	public Stanza(String nome) {
 		this.nome = nome;
 		this.stanzeAdiacenti = new HashMap<String, Stanza>();
-		this.attrezzi = new ArrayList<Attrezzo>();
-		this.nome = nome;
+		this.attrezzi = new HashMap<String, Attrezzo>();
 	}
 
 	/**
@@ -74,7 +72,7 @@ public class Stanza {
 	 * @return la collezione di attrezzi nella stanza.
 	 */
 	public List<Attrezzo> getAttrezzi() {
-		return this.attrezzi;
+		return (List<Attrezzo>) this.attrezzi.values();
 	}
 
 	/**
@@ -83,7 +81,8 @@ public class Stanza {
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		return this.attrezzi.add(attrezzo);
+		this.attrezzi.put(attrezzo.getNome(), attrezzo);
+		return this.attrezzi.containsKey(attrezzo.getNome());
 	}
 
 	/**
@@ -99,7 +98,7 @@ public class Stanza {
 			risultato.append(" " + direzione);
 		}
 		risultato.append("\nAttrezzi nella stanza: ");	
-		for (Attrezzo attrezzo : this.attrezzi) {
+		for (String attrezzo : this.attrezzi.keySet()) {
 			risultato.append(attrezzo.toString()+" ");
 		}
 		
@@ -111,12 +110,7 @@ public class Stanza {
 	 * @return true se l'attrezzo esiste nella stanza, false altrimenti.
 	 */
 	public boolean hasAttrezzo(String nomeAttrezzo){
-		for(Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo.getNome().equals(nomeAttrezzo)) {
-				return true;
-			}
-		}
-		return false;
+		return this.attrezzi.containsKey(nomeAttrezzo);
 	}
 
 	/**
@@ -126,12 +120,7 @@ public class Stanza {
 	 * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo){
-		for(Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo.getNome().equals(nomeAttrezzo)) {
-				return attrezzo;
-			}
-		}
-		return null;
+		return this.attrezzi.get(nomeAttrezzo);
 	}
 
 	/**
@@ -140,7 +129,14 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		return this.attrezzi.remove(attrezzo);
+		if(this.isEmpty()) {
+			return false;
+		}
+		return this.attrezzi.remove(attrezzo.getNome()).equals(attrezzo);
+	}
+
+	private boolean isEmpty() {
+		return this.attrezzi.isEmpty();
 	}
 
 	@Override
