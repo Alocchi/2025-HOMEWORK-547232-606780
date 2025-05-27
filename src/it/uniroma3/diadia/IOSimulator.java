@@ -1,44 +1,36 @@
 package it.uniroma3.diadia;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class IOSimulator implements IO{
 	
-	private String[] input;
-	private String[] output;
-	private int numeroElementi;
+	private List<String> input;
+	private List<String> output;
 	
-	public IOSimulator(String[] pilaDiComandi) {
+	public IOSimulator(LinkedList<String> pilaDiComandi) {
 		this();
 		this.input = pilaDiComandi;
 	}
 	
 	public IOSimulator() {
-		this.output = new String[100];
-		this.numeroElementi = 0;
+		this.output = new LinkedList<String>();
 	}
 
 	public void mostraMessaggio(String messaggio) {
-		this.output[numeroElementi] = messaggio;
-		this.numeroElementi++;
+		this.output.addLast(messaggio);
 	}
 
 	public String leggiRiga() {
-		String ris = input[0];
-		for(int i = 1; i < input.length; i++) {
-			input[i-1] = input[i];
-		}
-		return ris;
+		return this.input.removeFirst();
 	}
 	
-	public String[] getOutput() {
+	public List<String> getOutput() {
 		return this.output;
 	}
 	
-	public String[] getInput() {
+	public List<String> getInput() {
 		return this.input;
 	}
 	
-	public int getNumeroElementiOutput() {
-		return this.numeroElementi;
-	}
-
 }

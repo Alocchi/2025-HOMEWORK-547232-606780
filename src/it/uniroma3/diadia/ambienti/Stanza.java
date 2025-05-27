@@ -143,5 +143,15 @@ public class Stanza {
 		return this.attrezzi.remove(attrezzo);
 	}
 
+	@Override
+	public int hashCode() {
+		return this.nome.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		Stanza that = (Stanza) o;
+		return this.nome.equals(that.getNome());
+	}
 
 }

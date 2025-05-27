@@ -34,13 +34,13 @@ class ComandoVaiTest {
 	void testVaiInDirezioneNonEsistente() {
 		comando.setParametro("destra");
 		this.comando.esegui(partita, io);
-		assertEquals(this.io.getOutput()[0], "Direzione inesistente");
+		assertEquals(this.io.getOutput().getFirst(), "Direzione inesistente");
 	}
 	
 	@Test
 	void testVaiInDirezioneNulla() {
 		this.comando.esegui(partita, io);
-		assertEquals(this.io.getOutput()[0], "Dove vuoi andare ?\n Devi specificare una direzione");
+		assertEquals(this.io.getOutput().getFirst(), "Dove vuoi andare ?\n Devi specificare una direzione");
 	}
 
 }

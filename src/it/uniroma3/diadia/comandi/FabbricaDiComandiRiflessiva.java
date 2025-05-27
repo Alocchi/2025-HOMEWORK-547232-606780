@@ -19,7 +19,7 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi{
 			parametro = scannerDiParole.next();
 		}
 		try {
-		StringBuilder nomeClasse = new StringBuilder("it.uaniroma3.diadia.comandi.Comando");
+		StringBuilder nomeClasse = new StringBuilder("it.uniroma3.diadia.comandi.Comando");
 		nomeClasse.append(Character.toUpperCase(nomeComando.charAt(0)));
 		nomeClasse.append(nomeComando.substring(1));
 		comando = (Comando)Class.forName(nomeClasse.toString()).newInstance();

@@ -1,7 +1,9 @@
 package it.uniroma3.diadia.giocatore;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -9,7 +11,7 @@ public class Borsa {
 
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
 	private int pesoMax;
-	private List<Attrezzo> attrezzi;
+	private Map<String, Attrezzo> attrezzi;
 	
 	public Borsa() {
 		this(DEFAULT_PESO_MAX_BORSA);
@@ -17,13 +19,14 @@ public class Borsa {
 
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
-		this.attrezzi = new ArrayList<Attrezzo>();
+		this.attrezzi = new HashMap<String, Attrezzo>();
 	}
 
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
-		return this.attrezzi.add(attrezzo);
+		this.attrezzi.put(attrezzo.getNome(), attrezzo);
+		return attrezzi.containsKey(attrezzo.getNome());
 	}
 
 	public int getPesoMax() {
@@ -31,17 +34,14 @@ public class Borsa {
 	}
 
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		for(Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo.getNome().equals(nomeAttrezzo)) {
-				return attrezzo;
-			}
-		}
-		return null;
+		return this.attrezzi.get(nomeAttrezzo);
 	}
 
 	public int getPeso() {
 		int peso = 0;
-		for (Attrezzo attrezzo : this.attrezzi) {
+		Collection<Attrezzo> temp = new ArrayList<Attrezzo>();
+		temp = this.attrezzi.values();
+		for (Attrezzo attrezzo : temp) {
 			peso += attrezzo.getPeso();
 		}
 
@@ -53,35 +53,31 @@ public class Borsa {
 	}
 
 	public boolean hasAttrezzo(String nomeAttrezzo) {
-		for(Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo.getNome().equals(nomeAttrezzo)) {
-				return true;
-			}
-		}
-		return false;
+		return this.attrezzi.containsKey(nomeAttrezzo);
 	}
 
 	/**
 	 * Rimuove un attrezzo dalla borsa (ricerca in base al nome).
 	 * @param nomeAttrezzo
-	 * @return il riferimento all'attrezzo se presente, null altrimenti
+	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	
 	public boolean removeAttrezzo(String nomeAttrezzo) {
-		for(Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo.getNome().equals(nomeAttrezzo)) {
-				return attrezzi.remove(attrezzo);
-			}
+		if(this.isEmpty()) {
+			return false;
 		}
-		return false;
+		Attrezzo temp = this.attrezzi.get(nomeAttrezzo);
+		return this.attrezzi.remove(nomeAttrezzo).equals(temp);
 	}
 
 	public String toString() {
+		Collection<Attrezzo> temp = new ArrayList<Attrezzo>();
+		temp = this.attrezzi.values();
 		StringBuilder s = new StringBuilder();
 
 		if (!this.isEmpty()) {
 			s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-			for (Attrezzo attrezzo : attrezzi)
+			for (Attrezzo attrezzo : temp)
 				s.append(attrezzo.toString()+" ");
 		}
 		else
