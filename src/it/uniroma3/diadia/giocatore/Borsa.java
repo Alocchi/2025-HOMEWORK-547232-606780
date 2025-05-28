@@ -115,6 +115,24 @@ public class Borsa {
 		return mappa;
 	}
 	
+	public SortedSet<Attrezzo> getSortedSetOrdinatoPerPeso(){
+		Comparator<Attrezzo> comp = new Comparator<Attrezzo>(){
+			@Override
+			public int compare(Attrezzo a1, Attrezzo a2) {
+				if(a1.getPeso() == a2.getPeso()) {
+					return a1.compareTo(a2);
+				}
+				return a1.getPeso() - a2.getPeso();
+			}
+		};
+		TreeSet<Attrezzo> ris = new TreeSet<Attrezzo>(comp);
+		for(Attrezzo attrezzo : this.attrezzi.values()) {
+			ris.add(attrezzo);
+		}
+		
+		return ris;
+	}
+	
 	public String toString() {
 		Collection<Attrezzo> temp = new ArrayList<Attrezzo>();
 		temp = this.getContenutoOrdinatoPerNome();
