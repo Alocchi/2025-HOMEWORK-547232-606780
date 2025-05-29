@@ -5,14 +5,22 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+
 class PartitaTest {
 	
 	private Partita partita;
 
 	@BeforeEach
 	void setUp() throws Exception{
-		this.partita = new Partita();
-		
+		Labirinto bilocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto")
+				.addStanzaVincente("camera")
+				.addAttrezzo("letto",10) 
+				.addAdiacenza("salotto", "camera", "nord")
+				.getLabirinto();
+		this.partita = new Partita(bilocale);
 	}
 	
 	@Test

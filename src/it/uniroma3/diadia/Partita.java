@@ -20,16 +20,16 @@ public class Partita {
 	private boolean finita;
 	private Giocatore giocatore;
 	
-	public Partita(int pesoMax){
-		this.labirinto = new Labirinto();
+	public Partita(Labirinto labirinto, int pesoMax){
+		this.labirinto = labirinto;
 		this.giocatore = new Giocatore(pesoMax);
 		this.stanzaCorrente = this.labirinto.getEntrata();
 		this.stanzaVincente = this.labirinto.getUscita();		
 		this.finita = false;
 	}
 	
-	public Partita(){
-		this.labirinto = new Labirinto();
+	public Partita(Labirinto labirinto){
+		this.labirinto = labirinto;
 		this.giocatore = new Giocatore();
 		this.stanzaCorrente = this.labirinto.getEntrata();
 		this.stanzaVincente = this.labirinto.getUscita();		

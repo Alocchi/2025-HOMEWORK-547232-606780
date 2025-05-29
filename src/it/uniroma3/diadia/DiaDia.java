@@ -1,5 +1,7 @@
 package it.uniroma3.diadia;
 
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
@@ -30,13 +32,13 @@ public class DiaDia {
 	private Partita partita;
 	private IO io;
 
-	public DiaDia(IO io, int pesoMax){
-		this.partita = new Partita(pesoMax);
+	public DiaDia(Labirinto labirinto, IO io, int pesoMax){
+		this.partita = new Partita(labirinto, pesoMax);
 		this.io = io;
 	}
 	
-	public DiaDia(IO io){
-		this.partita = new Partita();
+	public DiaDia(Labirinto labirinto, IO io){
+		this.partita = new Partita(labirinto);
 		this.io = io;
 	}
 
@@ -78,7 +80,15 @@ public class DiaDia {
 
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
-		DiaDia gioco = new DiaDia(io);
+		
+		Labirinto bilocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto")
+				.addStanzaVincente("camera")
+				.addAttrezzo("letto",10)
+				.addAdiacenza("salotto", "camera", "nord")
+				.getLabirinto(); 
+		
+		DiaDia gioco = new DiaDia(bilocale, io);
 		gioco.gioca();
 	}
 }

@@ -33,5 +33,9 @@ class StanzaMagica extends Stanza {
 		attrezzo = new Attrezzo(nomeInvertito.toString(),pesoX2);
 		return attrezzo;
 	}
+
+	public boolean isMagica() {
+		return true;
+	}
 	
 }

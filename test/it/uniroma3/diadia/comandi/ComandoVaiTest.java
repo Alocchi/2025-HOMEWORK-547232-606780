@@ -9,6 +9,8 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 class ComandoVaiTest {
 
@@ -19,15 +21,21 @@ class ComandoVaiTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		this.comando = new ComandoVai();
-		this.partita = new Partita();
+		Labirinto bilocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto")
+				.addStanzaVincente("camera")
+				.addAttrezzo("letto",10) 
+				.addAdiacenza("salotto", "camera", "nord")
+				.getLabirinto();
+		this.partita = new Partita(bilocale);
 		this.io = new IOSimulator();
 	}
 	
 	@Test
 	void testVaiSud() {
-		this.comando.setParametro("sud");
+		this.comando.setParametro("nord");
 		this.comando.esegui(partita, io);
-		assertEquals(this.partita.getStanzaCorrente().getNome(), "Aula N10");
+		assertEquals(this.partita.getStanzaCorrente().getNome(), "camera");
 	}
 	
 	@Test

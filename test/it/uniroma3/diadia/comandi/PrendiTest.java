@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class PrendiTest {
@@ -20,7 +22,11 @@ class PrendiTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		this.comando = new ComandoPrendi();
-		this.partita = new Partita();
+		Labirinto monolocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto")
+				.addStanzaVincente("salotto")
+				.getLabirinto();
+		this.partita = new Partita(monolocale);
 		this.io = new IOConsole();
 		this.attrezzo = new Attrezzo("attrezzo", 10);
 		this.partita.getStanzaCorrente().addAttrezzo(attrezzo);
@@ -31,20 +37,17 @@ class PrendiTest {
 		this.comando.setParametro("attrezzo");
 		this.comando.esegui(partita, io);
 		assertEquals(this.partita.getGiocatore().getBorsa().getAttrezzo("attrezzo"), attrezzo);
-		//da modificare una volta implementato IOSimulator
 	}
 	
 	@Test
 	void testPrendiAttrezzoInesistente() {
 		this.comando.setParametro("AttrezzoTest");
 		this.comando.esegui(partita, io);
-		//da modificare una volta implementato IOSimulator
 	}
 	
 	@Test
 	void testPrendiAttrezzoNullo() {
 		this.comando.esegui(partita, io);
-		//da modificare una volta implementato IOSimulator
 	}
 
 }

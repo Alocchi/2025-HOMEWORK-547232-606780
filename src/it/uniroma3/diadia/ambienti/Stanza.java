@@ -3,6 +3,7 @@ package it.uniroma3.diadia.ambienti;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -148,6 +149,14 @@ public class Stanza {
 	public boolean equals(Object o) {
 		Stanza that = (Stanza) o;
 		return this.nome.equals(that.getNome());
+	}
+
+	public Set<String> getDirezioni() {
+		return this.stanzeAdiacenti.keySet();
+	}
+
+	public Map<String, Stanza> getMapStanzeAdiacenti() {
+		return this.stanzeAdiacenti;
 	}
 
 }
