@@ -1,6 +1,9 @@
 package it.uniroma3.diadia.ambienti;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +44,9 @@ public class Stanza {
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
 	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-		this.stanzeAdiacenti.put(direzione, stanza);
+		if(direzione == "nord" | direzione == "sud" | direzione == "est" | direzione == "ovest") {
+			this.stanzeAdiacenti.put(direzione, stanza);
+		}
 	}
 
 	/**
@@ -73,7 +78,9 @@ public class Stanza {
 	 * @return la collezione di attrezzi nella stanza.
 	 */
 	public List<Attrezzo> getAttrezzi() {
-		return (List<Attrezzo>) this.attrezzi.values();
+		List<Attrezzo> lista = new LinkedList<Attrezzo>();
+		lista.addAll(this.attrezzi.values());
+		return lista;
 	}
 
 	/**
@@ -151,8 +158,10 @@ public class Stanza {
 		return this.nome.equals(that.getNome());
 	}
 
-	public Set<String> getDirezioni() {
-		return this.stanzeAdiacenti.keySet();
+	public List<String> getDirezioni() {
+		List<String> direzioni = new ArrayList<String>();
+		direzioni.addAll(this.stanzeAdiacenti.keySet());
+		return direzioni;
 	}
 
 	public Map<String, Stanza> getMapStanzeAdiacenti() {
