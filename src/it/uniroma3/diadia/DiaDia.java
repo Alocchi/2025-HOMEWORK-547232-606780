@@ -103,7 +103,7 @@ public class DiaDia {
 				.addAdiacenza("Laboratorio Campus", "Atrio", "est")
 				.addAdiacenza("Laboratorio Campus", "Aula N11", "ovest")
 				.addAdiacenza("Biblioteca", "Atrio", "sud")
-				.addPersonaggio("Atrio", "cane")
+				.addPersonaggio("Atrio", "strega")
 				.getLabirinto();
 		
 		DiaDia gioco = new DiaDia(labirinto, io);

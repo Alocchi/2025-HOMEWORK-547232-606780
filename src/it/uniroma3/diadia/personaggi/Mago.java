@@ -1,4 +1,4 @@
-package it.uniroma3.diadia.ambienti;
+package it.uniroma3.diadia.personaggi;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
@@ -6,7 +6,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class Mago extends AbstractPersonaggio{
 
 	private static final String NOME_DEFAULT = "Otto il mago";
+	
 	private static final String PRESENTAZIONE_DEFAULT = "Piacere di conoescerti !";
+	
 	private static final String MESSAGGIO_DONO = "Sei un vero simpaticone, " +
 			"con una mia magica azione, troverai un nuovo oggetto " +
 			"per il tuo borsone!";

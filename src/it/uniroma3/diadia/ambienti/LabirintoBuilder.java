@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 public class LabirintoBuilder {
 	
@@ -81,7 +82,7 @@ public class LabirintoBuilder {
 	}
 	
 	public LabirintoBuilder addPersonaggio(String stanza, String nome) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		StringBuilder nomePersonaggio = new StringBuilder("it.uniroma3.diadia.ambienti.");
+		StringBuilder nomePersonaggio = new StringBuilder("it.uniroma3.diadia.personaggi.");
 		nomePersonaggio.append(Character.toUpperCase(nome.charAt(0)));
 		nomePersonaggio.append(nome.substring(1));
 		AbstractPersonaggio personaggio = (AbstractPersonaggio)Class.forName(nomePersonaggio.toString()).newInstance();
