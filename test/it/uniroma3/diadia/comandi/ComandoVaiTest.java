@@ -50,5 +50,20 @@ class ComandoVaiTest {
 		this.comando.esegui(partita, io);
 		assertEquals(this.io.getOutput().getFirst(), "Dove vuoi andare ?\n Devi specificare una direzione");
 	}
+	
+	@Test
+	void testVaiMonolocale() {
+		Labirinto monolocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto")
+				.addStanzaVincente("salotto")
+				.getLabirinto();
+		this.partita = new Partita(monolocale);
+		String[] direzioni = {"nord", "sud", "est", "ovest"};
+		for(String direzione : direzioni) {
+			comando.setParametro(direzione);
+			this.comando.esegui(partita, io);
+			assertEquals(this.io.getOutput().getFirst(), "Direzione inesistente");
+		}	
+	}
 
 }
