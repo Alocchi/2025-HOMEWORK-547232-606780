@@ -12,7 +12,7 @@ import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-class PrendiTest {
+class ComandoPrendiTest {
 	
 	private Comando comando;
 	private Partita partita;

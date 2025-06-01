@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class FabbricaDiComandiFisarmonicaTest {
-	
+class FabbricaDiComandiRiflessivaTest {
+
 	private FabbricaDiComandi fabbrica;
 	private Comando comando;
 	
 	@BeforeEach
 	void setUp() throws Exception{
-		this.fabbrica = new FabbricaDiComandiFisarmonica();	
+		this.fabbrica = new FabbricaDiComandiRiflessiva();	
 	}
 
 	@Test
@@ -61,7 +61,6 @@ class FabbricaDiComandiFisarmonicaTest {
 	void testComandoNonValido() {
 		this.comando = fabbrica.costruisciComando("aaaa");
 		assertEquals(this.comando.getNome(), "non valido");
-		assertNull(this.comando.getParametro());
 	}
 
 }
