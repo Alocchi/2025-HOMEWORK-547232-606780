@@ -80,6 +80,16 @@ public class LabirintoBuilder {
 		return this;
 	}
 	
+	public LabirintoBuilder addPersonaggio(String stanza, String nome) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		StringBuilder nomePersonaggio = new StringBuilder("it.uniroma3.diadia.ambienti.");
+		nomePersonaggio.append(Character.toUpperCase(nome.charAt(0)));
+		nomePersonaggio.append(nome.substring(1));
+		AbstractPersonaggio personaggio = (AbstractPersonaggio)Class.forName(nomePersonaggio.toString()).newInstance();
+		this.stanze.get(stanza).setPersonaggio(personaggio);
+		
+		return this;
+	}
+	
 	public LabirintoBuilder addAdiacenza(String s1, String s2, String direzione) {
 		this.stanze.get(s1).impostaStanzaAdiacente(direzione, this.stanze.get(s2));
 		return this;

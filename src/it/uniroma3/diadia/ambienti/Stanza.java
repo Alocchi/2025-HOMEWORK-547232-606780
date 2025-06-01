@@ -26,6 +26,7 @@ public class Stanza {
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
 	private Map<String, Stanza> stanzeAdiacenti;
+	private AbstractPersonaggio personaggio;
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -166,6 +167,14 @@ public class Stanza {
 
 	public Map<String, Stanza> getMapStanzeAdiacenti() {
 		return this.stanzeAdiacenti;
+	}
+
+	public AbstractPersonaggio getPersonaggio() {
+		return this.personaggio;
+	}
+
+	public void setPersonaggio(AbstractPersonaggio personaggio) {
+		this.personaggio = personaggio;
 	}
 
 }

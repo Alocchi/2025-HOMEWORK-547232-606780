@@ -78,7 +78,7 @@ public class DiaDia {
 	}
 
 
-	public static void main(String[] argc) {
+	public static void main(String[] argc) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		IO io = new IOConsole();
 		
 		Labirinto labirinto = new LabirintoBuilder()
@@ -103,6 +103,7 @@ public class DiaDia {
 				.addAdiacenza("Laboratorio Campus", "Atrio", "est")
 				.addAdiacenza("Laboratorio Campus", "Aula N11", "ovest")
 				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.addPersonaggio("Atrio", "cane")
 				.getLabirinto();
 		
 		DiaDia gioco = new DiaDia(labirinto, io);

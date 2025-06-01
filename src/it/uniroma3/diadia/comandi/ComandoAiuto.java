@@ -10,7 +10,7 @@ import it.uniroma3.diadia.Partita;
 /**
  * Stampa informazioni di aiuto.
  */
-public class ComandoAiuto implements Comando {
+public class ComandoAiuto extends AbstractComando {
 
 	@Override
 	public void esegui(Partita partita, IO io) {
@@ -35,9 +35,9 @@ public class ComandoAiuto implements Comando {
 		}
 
 		for(String comando : comandi) {
-			if(!comando.equals("Comando")) {
+			if(!comando.equals(prefisso)) {
 				if(!comando.contains("Test")) {
-					String messaggio = comando.replace("Comando", "");
+					String messaggio = comando.replace(prefisso, "");
 					io.mostraMessaggio(messaggio);
 				}
 			}
@@ -45,18 +45,8 @@ public class ComandoAiuto implements Comando {
 	}
 
 	@Override
-	public void setParametro(String parametro) {
-		//questo comando non ha parametri
-	}
-
-	@Override
 	public String getNome() {
 		return "aiuto";
-	}
-
-	@Override
-	public String getParametro() {
-		return null;
 	}
 
 }
