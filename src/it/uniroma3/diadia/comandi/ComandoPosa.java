@@ -20,7 +20,12 @@ public class ComandoPosa implements Comando {
 			io.mostraMessaggio(partita.getGiocatore().getBorsa().toString());
 		}
 		else {
-			io.mostraMessaggio("l'oggetto " + this.wanted + " non è nella borsa ");
+			if(wanted == null) {
+				io.mostraMessaggio("non hai specificato l'oggetto");
+			}
+			else {
+				io.mostraMessaggio("l'oggetto " + this.wanted + " non è nella borsa");
+			}
 		}
 	}
 

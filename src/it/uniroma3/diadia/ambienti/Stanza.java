@@ -19,7 +19,7 @@ import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
  * @version base
 */
 
-public class Stanza {
+public class Stanza implements Comparable<Stanza>{
 
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
@@ -135,6 +135,14 @@ public class Stanza {
 	public Attrezzo getAttrezzo(String nomeAttrezzo){
 		return this.attrezzi.get(nomeAttrezzo);
 	}
+	
+	public int getNumeroAttrezzi() {
+		int count = 0;
+		for(String attrezzo : this.attrezzi.keySet()) {
+			count++;
+		}
+		return count;
+	}
 
 	/**
 	 * Rimuove un attrezzo dalla stanza (ricerca in base al riferimento dell'oggetto).
@@ -179,6 +187,15 @@ public class Stanza {
 
 	public void setPersonaggio(AbstractPersonaggio personaggio) {
 		this.personaggio = personaggio;
+	}
+
+	@Override
+	public int compareTo(Stanza o) {
+		Stanza that = (Stanza)o;
+		if(this.getNumeroAttrezzi() == that.getNumeroAttrezzi()) {
+			return this.getNome().compareTo(that.getNome());
+		}
+		return this.getNumeroAttrezzi() - that.getNumeroAttrezzi();
 	}
 
 }

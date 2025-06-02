@@ -7,7 +7,7 @@ public class Mago extends AbstractPersonaggio{
 
 	private static final String NOME_DEFAULT = "Otto il mago";
 	
-	private static final String PRESENTAZIONE_DEFAULT = "Piacere di conoescerti !";
+	private static final String PRESENTAZIONE_DEFAULT = "Piacere di conoescerti!";
 	
 	private static final String MESSAGGIO_DONO = "Sei un vero simpaticone, " +
 			"con una mia magica azione, troverai un nuovo oggetto " +
@@ -24,6 +24,7 @@ public class Mago extends AbstractPersonaggio{
 	
 	public Mago() {
 		super(NOME_DEFAULT, PRESENTAZIONE_DEFAULT);
+		this.attrezzo = new Attrezzo("mantello", 1);
 	}
 
 	@Override

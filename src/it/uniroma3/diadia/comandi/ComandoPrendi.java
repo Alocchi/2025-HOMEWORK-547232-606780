@@ -25,7 +25,12 @@ public class ComandoPrendi implements Comando {
 			}
 		}
 		else {
-			io.mostraMessaggio("l'oggetto " + this.wanted + " non è in " + partita.getStanzaCorrente().getNome());
+			if(wanted == null) {
+				io.mostraMessaggio("non hai specificato l'oggetto");
+			}
+			else {
+				io.mostraMessaggio("l'oggetto " + this.wanted + " non è in " + partita.getStanzaCorrente().getNome());
+			}
 		}
 	}
 

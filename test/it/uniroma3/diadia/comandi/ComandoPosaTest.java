@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.IO;
-import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
@@ -16,7 +16,7 @@ class ComandoPosaTest {
 
 	private Comando comando;
 	private Partita partita;
-	private IO io;
+	private IOSimulator io;
 	private Attrezzo attrezzo;
 	
 	@BeforeEach
@@ -27,7 +27,7 @@ class ComandoPosaTest {
 				.addStanzaVincente("salotto")
 				.getLabirinto();
 		this.partita = new Partita(monolocale);
-		this.io = new IOConsole();
+		this.io = new IOSimulator();
 		this.attrezzo = new Attrezzo("attrezzo", 10);
 		this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzo);
 	}
@@ -37,17 +37,20 @@ class ComandoPosaTest {
 		this.comando.setParametro("attrezzo");
 		this.comando.esegui(partita, io);
 		assertEquals(this.partita.getStanzaCorrente().getAttrezzo("attrezzo"), attrezzo);
+		assertEquals(this.io.getOutput().getFirst(), "hai posato attrezzo");
 	}
 	
 	@Test
 	void testPrendiAttrezzoInesistente() {
 		this.comando.setParametro("AttrezzoTest");
 		this.comando.esegui(partita, io);
+		assertEquals(this.io.getOutput().getFirst(), "l'oggetto AttrezzoTest non è nella borsa");
 	}
 	
 	@Test
 	void testPrendiAttrezzoNullo() {
 		this.comando.esegui(partita, io);
+		assertEquals(this.io.getOutput().getFirst(), "non hai specificato l'oggetto");
 	}
 
 }
