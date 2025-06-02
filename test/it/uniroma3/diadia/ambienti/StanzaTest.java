@@ -2,10 +2,13 @@ package it.uniroma3.diadia.ambienti;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class StanzaTest {
@@ -46,4 +49,71 @@ class StanzaTest {
 		assertFalse(this.stanza.removeAttrezzo(attrezzo));
 	}
 	
+	@Test
+	void testImpostaStanzaAdiacente() {
+		this.stanza.impostaStanzaAdiacente("nord", new Stanza("test"));
+		assertEquals("test", this.stanza.getStanzaAdiacente("nord").getNome());
+	}
+	
+	void testImpostaStanzaAdiacenteDirezioneInesistente() {
+		this.stanza.impostaStanzaAdiacente("sopra", new Stanza("test"));
+		Set<String> stanze = this.stanza.getMapStanzeAdiacenti().keySet();
+		Iterator<String> it = stanze.iterator();
+		assertFalse(it.hasNext());
+	}
+	
+	@Test
+	void testImpostaStanzaAdiacenteDueVolte() {
+		this.stanza.impostaStanzaAdiacente("nord", new Stanza("test1"));
+		this.stanza.impostaStanzaAdiacente("nord", new Stanza("test2"));
+		assertEquals("test2", this.stanza.getStanzaAdiacente("nord").getNome());
+	}
+	
+	@Test
+	void testGetAttrezzi() {
+		this.stanza.addAttrezzo(new Attrezzo("spada", 5));
+		List<Attrezzo> attrezzi = this.stanza.getAttrezzi();
+		Iterator<Attrezzo> it = attrezzi.iterator();
+		assertTrue(it.hasNext());
+		assertEquals("attrezzo", it.next().getNome());
+		assertTrue(it.hasNext());
+		assertEquals("spada", it.next().getNome());
+		assertFalse(it.hasNext());
+	}
+	
+	@Test
+	void testToString() {
+		this.stanza.impostaStanzaAdiacente("nord", new Stanza("n12"));
+		this.stanza.impostaStanzaAdiacente("sud", new Stanza("n10"));
+		assertEquals("n11\nUscite:  nord sud\nAttrezzi nella stanza: attrezzo ", this.stanza.toString());
+	}
+	
+	@Test
+	void testGetNumeroAttrezzi() {
+		this.stanza.addAttrezzo(new Attrezzo("spada", 5));
+		this.stanza.addAttrezzo(new Attrezzo("scudo", 5));
+		this.stanza.addAttrezzo(new Attrezzo("elmo", 5));
+		assertEquals(4, this.stanza.getNumeroAttrezzi());
+	}
+	
+	@Test
+	void testGetDirezioni() {
+		this.stanza.impostaStanzaAdiacente("nord", new Stanza("n12"));
+		this.stanza.impostaStanzaAdiacente("sud", new Stanza("n10"));
+		List<String> direzioni = this.stanza.getDirezioni();
+		Iterator<String> it = direzioni.iterator();
+		assertTrue(it.hasNext());
+		assertEquals("nord", it.next());
+		assertTrue(it.hasNext());
+		assertEquals("sud", it.next());
+		assertFalse(it.hasNext());
+	}
+	
+	@Test
+	void testCompareTo() {
+		Stanza stanza = new Stanza("test");
+		stanza.addAttrezzo(new Attrezzo("spada", 5));
+		stanza.addAttrezzo(new Attrezzo("scudo", 5));
+		assertTrue(stanza.compareTo(this.stanza) > 0);
+	}
 }
