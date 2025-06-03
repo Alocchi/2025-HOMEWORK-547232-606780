@@ -37,8 +37,10 @@ public class ComandoAiuto extends AbstractComando {
 		for(String comando : comandi) {
 			if(!comando.equals(prefisso)) {
 				if(!comando.contains("Test")) {
-					String messaggio = comando.replace(prefisso, "");
-					io.mostraMessaggio(messaggio);
+					if(!comando.contains("NonValido")) {
+						String messaggio = comando.replace(prefisso, "");
+						io.mostraMessaggio(messaggio);
+					}
 				}
 			}
 		}
