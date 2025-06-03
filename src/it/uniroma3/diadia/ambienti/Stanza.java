@@ -46,6 +46,18 @@ public class Stanza implements Comparable<Stanza>{
 	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
 		if(direzione == "nord" | direzione == "sud" | direzione == "est" | direzione == "ovest") {
 			this.stanzeAdiacenti.put(direzione, stanza);
+			if(direzione == "nord") {
+				stanza.getMapStanzeAdiacenti().put("sud", this);
+			}
+			if(direzione == "sud") {
+				stanza.getMapStanzeAdiacenti().put("nord", this);
+			}
+			if(direzione == "est") {
+				stanza.getMapStanzeAdiacenti().put("ovest", this);
+			}
+			if(direzione == "ovest") {
+				stanza.getMapStanzeAdiacenti().put("est", this);
+			}
 		}
 	}
 

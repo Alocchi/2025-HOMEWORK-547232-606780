@@ -24,7 +24,7 @@ class ComandoVaiTest {
 		Labirinto bilocale = new LabirintoBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
-				.addAttrezzo("letto",10) 
+				.addAttrezzo("letto",10, "camera") 
 				.addAdiacenza("salotto", "camera", "nord")
 				.getLabirinto();
 		this.partita = new Partita(bilocale);

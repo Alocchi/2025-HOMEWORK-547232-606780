@@ -10,12 +10,10 @@ public class LabirintoBuilder {
 	
 	private Labirinto labirinto;
 	private Map<String, Stanza> stanze;
-	private Stanza ultimaStanzaCreata;
 	
 	public LabirintoBuilder() {
 		this.labirinto = new Labirinto();
 		this.stanze = new HashMap<String, Stanza>();
-		this.ultimaStanzaCreata = null;
 	}
 
 	public LabirintoBuilder addStanzaIniziale(String nome) {
@@ -43,41 +41,36 @@ public class LabirintoBuilder {
 	public LabirintoBuilder addStanza(String nome) {
 		Stanza stanza = new Stanza(nome);
 		this.stanze.put(nome, stanza);
-		this.ultimaStanzaCreata = stanza;
 		return this;
 	}
 	
 	public LabirintoBuilder addStanzaMagica(String nome) {
 		Stanza stanza = new StanzaMagica(nome);
 		this.stanze.put(nome, stanza);
-		this.ultimaStanzaCreata = stanza;
 		return this;
 	}
 	
 	public LabirintoBuilder addStanzaMagica(String nome, int soglia) {
 		Stanza stanza = new StanzaMagica(nome, soglia);
 		this.stanze.put(nome, stanza);
-		this.ultimaStanzaCreata = stanza;
 		return this;
 	}
 	
 	public LabirintoBuilder addStanzaBloccata(String nome, String direzione, String chiave) {
 		Stanza stanza = new StanzaBloccata(nome, direzione, chiave);
 		this.stanze.put(nome, stanza);
-		this.ultimaStanzaCreata = stanza;
 		return this;
 	}
 	
 	public LabirintoBuilder addStanzaBuia(String nome, String oggetto) {
 		Stanza stanza = new StanzaBuia(nome, oggetto);
 		this.stanze.put(nome, stanza);
-		this.ultimaStanzaCreata = stanza;
 		return this;
 	}
 
-	public LabirintoBuilder addAttrezzo(String nome, int peso) {
+	public LabirintoBuilder addAttrezzo(String nome, int peso, String stanza) {
 		Attrezzo attrezzo = new Attrezzo(nome, peso);
-		this.ultimaStanzaCreata.addAttrezzo(attrezzo);
+		this.stanze.get(stanza).addAttrezzo(attrezzo);
 		return this;
 	}
 	
@@ -94,6 +87,10 @@ public class LabirintoBuilder {
 	public LabirintoBuilder addAdiacenza(String s1, String s2, String direzione) {
 		this.stanze.get(s1).impostaStanzaAdiacente(direzione, this.stanze.get(s2));
 		return this;
+	}
+	
+	public boolean isStanzaValida(String nomeStanza) {
+		return this.stanze.containsKey(nomeStanza);
 	}
 	
 	public Labirinto getLabirinto() {
