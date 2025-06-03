@@ -9,8 +9,10 @@ import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.ComandoInteragisci;
+import it.uniroma3.diadia.comandi.ComandoRegala;
 import it.uniroma3.diadia.comandi.ComandoSaluta;
 
 class StregaTest {
@@ -45,6 +47,7 @@ class StregaTest {
 		assertEquals(this.io.getOutput().getLast(), "Ciao, io sono Sabrina la strega. Ci siamo gia' presentati!");
 	}
 	
+	@Test
 	void testAgisciSenzaSalutare() {
 		this.comando = new ComandoInteragisci();
 		this.comando.esegui(partita, io);
@@ -52,13 +55,22 @@ class StregaTest {
 		assertEquals("camera", this.partita.getStanzaCorrente().getNome());
 	}
 	
+	@Test
 	void testAgisciDopoAverSalutato() {
 		this.comando = new ComandoSaluta();
 		this.comando.esegui(partita, io);
 		this.comando = new ComandoInteragisci();
 		this.comando.esegui(partita, io);
 		assertEquals(this.io.getOutput().getLast(), "Che persona educata, permettimi di portarti in una bella stanza");
-		assertEquals("camera", this.partita.getStanzaCorrente().getNome());
+		assertEquals("bagno", this.partita.getStanzaCorrente().getNome());
 	}
 	
+	@Test
+	void testRiceviRegalo() {
+		this.partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("attrezzo", 4));
+		this.comando = new ComandoRegala();
+		this.comando.setParametro("attrezzo");
+		this.comando.esegui(partita, io);
+		assertEquals("AHAHAHAHAH ! Questo lo terrò io !", this.io.getOutput().getFirst());
+	}
 }

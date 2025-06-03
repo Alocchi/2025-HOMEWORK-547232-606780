@@ -45,6 +45,7 @@ class ComandoAiutoTest {
 		assertEquals("Interagisci", it.next());
 		assertEquals("Posa", it.next());
 		assertEquals("Prendi", it.next());
+		assertEquals("Regala", it.next());
 		assertEquals("Saluta", it.next());
 		assertEquals("Vai", it.next());
 		assertFalse(it.hasNext());

@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Strega extends AbstractPersonaggio{
 	
@@ -16,6 +17,8 @@ public class Strega extends AbstractPersonaggio{
 	private static final String NON_HA_SALUTO = "Maleducato! Normalmente si saluta! Adesso ti sposterò in una brutta stanza!";
 	
 	private static final String HA_SALUTATO = "Che persona educata, permettimi di portarti in una bella stanza";
+	
+	private static final String MESSAGGIO_REGALO = "AHAHAHAHAH ! Questo lo terrò io !";
 	
 	public Strega(String nome, String presentaz) {
 		super(nome, presentaz);
@@ -43,6 +46,12 @@ public class Strega extends AbstractPersonaggio{
 			partita.setStanzaCorrente(teletrasporto);
 		}
 		
+		return msg;
+	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		String msg = MESSAGGIO_REGALO;
 		return msg;
 	}
 

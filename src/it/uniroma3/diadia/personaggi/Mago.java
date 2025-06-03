@@ -14,6 +14,8 @@ public class Mago extends AbstractPersonaggio{
 			"per il tuo borsone!";
 
 	private static final String MESSAGGIO_SCUSE = "Mi spiace, ma non ho piu' nulla...";
+	
+	private static final String MESSAGGIO_RICEVI_REGALO = "Questo oggetto sembra molto pesante, lascia che lo alleggerisca con la mia magia";
 
 	private Attrezzo attrezzo;
 
@@ -24,7 +26,7 @@ public class Mago extends AbstractPersonaggio{
 	
 	public Mago() {
 		super(NOME_DEFAULT, PRESENTAZIONE_DEFAULT);
-		this.attrezzo = new Attrezzo("mantello", 1);
+		this.attrezzo = new Attrezzo("mantello", 2);
 	}
 
 	@Override
@@ -38,6 +40,13 @@ public class Mago extends AbstractPersonaggio{
 		else {
 			msg = MESSAGGIO_SCUSE;
 		}
+		return msg;
+	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		String msg = MESSAGGIO_RICEVI_REGALO;
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo(attrezzo.getNome(), attrezzo.getPeso()/2));
 		return msg;
 	}
 
