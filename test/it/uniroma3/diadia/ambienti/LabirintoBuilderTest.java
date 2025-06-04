@@ -11,6 +11,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.ambienti.Stanza.Direzione;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class LabirintoBuilderTest {
@@ -116,12 +117,12 @@ public class LabirintoBuilderTest {
 				Stanza test = new Stanza("stanza 5");
 		assertNull(maze.getEntrata().getStanzaAdiacente("nord-est"));
 		assertTrue(maze.getEntrata().getMapStanzeAdiacenti().size()<=4);
-		assertTrue(!maze.getEntrata().getMapStanzeAdiacenti().containsValue(test));
-		Map<String,Stanza> mappa = new HashMap<>();
-		mappa.put("nord", new Stanza("stanza 1"));
-		mappa.put("ovest", new Stanza("stanza 2"));
-		mappa.put("sud", new Stanza("stanza 3"));
-		mappa.put("est", new Stanza("stanza 4"));
+		assertFalse(maze.getEntrata().getMapStanzeAdiacenti().containsValue(test));
+		Map<Direzione,Stanza> mappa = new HashMap<>();
+		mappa.put(Direzione.NORD, new Stanza("stanza 1"));
+		mappa.put(Direzione.OVEST, new Stanza("stanza 2"));
+		mappa.put(Direzione.SUD, new Stanza("stanza 3"));
+		mappa.put(Direzione.EST, new Stanza("stanza 4"));
 		assertEquals(mappa,maze.getEntrata().getMapStanzeAdiacenti());
 	}
 	
@@ -320,11 +321,11 @@ public class LabirintoBuilderTest {
 		Stanza corridoio = labirintoCompleto.getEntrata().getStanzaAdiacente("nord");
 		assertEquals("corridoio",corridoio.getNome());
 		assertTrue(corridoio.getDirezioni().containsAll(Arrays.asList("ovest","est","nord","sud")));
-		Map<String,Stanza> mapAdiacenti = new HashMap<>();
-		mapAdiacenti.put("nord",new Stanza("corridoio bloccato"));
-		mapAdiacenti.put("sud",new Stanza(nomeStanzaIniziale));
-		mapAdiacenti.put("est",new Stanza("stanza magica"));
-		mapAdiacenti.put("ovest",new Stanza("stanza buia"));
+		Map<Direzione,Stanza> mapAdiacenti = new HashMap<>();
+		mapAdiacenti.put(Direzione.NORD,new Stanza("corridoio bloccato"));
+		mapAdiacenti.put(Direzione.SUD,new Stanza(nomeStanzaIniziale));
+		mapAdiacenti.put(Direzione.EST,new Stanza("stanza magica"));
+		mapAdiacenti.put(Direzione.OVEST,new Stanza("stanza buia"));
 		assertEquals(mapAdiacenti,corridoio.getMapStanzeAdiacenti());
 		Attrezzo a1 = new Attrezzo("chiave",1);
 		Attrezzo a2 = new Attrezzo("lanterna",1);

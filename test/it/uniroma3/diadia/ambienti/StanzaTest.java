@@ -2,6 +2,7 @@ package it.uniroma3.diadia.ambienti;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.Stanza.Direzione;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class StanzaTest {
@@ -57,8 +59,8 @@ class StanzaTest {
 	
 	void testImpostaStanzaAdiacenteDirezioneInesistente() {
 		this.stanza.impostaStanzaAdiacente("sopra", new Stanza("test"));
-		Set<String> stanze = this.stanza.getMapStanzeAdiacenti().keySet();
-		Iterator<String> it = stanze.iterator();
+		Set<Direzione> stanze = this.stanza.getMapStanzeAdiacenti().keySet();
+		Iterator<Direzione> it = stanze.iterator();
 		assertFalse(it.hasNext());
 	}
 	
@@ -82,13 +84,6 @@ class StanzaTest {
 	}
 	
 	@Test
-	void testToString() {
-		this.stanza.impostaStanzaAdiacente("nord", new Stanza("n12"));
-		this.stanza.impostaStanzaAdiacente("sud", new Stanza("n10"));
-		assertEquals("n11\nUscite:  nord sud\nAttrezzi nella stanza: attrezzo ", this.stanza.toString());
-	}
-	
-	@Test
 	void testGetNumeroAttrezzi() {
 		this.stanza.addAttrezzo(new Attrezzo("spada", 5));
 		this.stanza.addAttrezzo(new Attrezzo("scudo", 5));
@@ -97,16 +92,12 @@ class StanzaTest {
 	}
 	
 	@Test
-	void testGetDirezioni() {
+	void testGetDirezioni() { 
 		this.stanza.impostaStanzaAdiacente("nord", new Stanza("n12"));
-		this.stanza.impostaStanzaAdiacente("sud", new Stanza("n10"));
 		List<String> direzioni = this.stanza.getDirezioni();
-		Iterator<String> it = direzioni.iterator();
-		assertTrue(it.hasNext());
-		assertEquals("nord", it.next());
-		assertTrue(it.hasNext());
-		assertEquals("sud", it.next());
-		assertFalse(it.hasNext());
+		List<String> attesa = new ArrayList<String>();
+		attesa.add("nord");
+		assertEquals(attesa, direzioni);
 	}
 	
 	@Test

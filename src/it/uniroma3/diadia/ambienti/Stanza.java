@@ -23,7 +23,7 @@ public class Stanza implements Comparable<Stanza>{
 
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
-	private Map<String, Stanza> stanzeAdiacenti;
+	private Map<Direzione, Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio;
 
 	/**
@@ -32,11 +32,33 @@ public class Stanza implements Comparable<Stanza>{
 	 */
 	public Stanza(String nome) {
 		this.nome = nome;
-		this.stanzeAdiacenti = new HashMap<String, Stanza>();
+		this.stanzeAdiacenti = new HashMap<Direzione, Stanza>();
 		this.attrezzi = new HashMap<String, Attrezzo>();
 		this.personaggio = null;
 	}
 
+	public enum Direzione {
+		NORD(0) { @Override
+			public Direzione opposta() { return SUD; }
+		},
+		EST(90) { @Override
+			public Direzione opposta() {return OVEST;}
+		},
+		SUD(180){ @Override
+			public Direzione opposta() {return NORD;}
+		},
+		OVEST(270) { @Override
+			public Direzione opposta() { return EST; }
+		};
+		private final int gradi;
+		private Direzione(int gradi) {
+			this.gradi = gradi;
+		}
+		public int getGradi() { return this.gradi; }
+		
+		public abstract Direzione opposta();
+	}
+	
 	/**
 	 * Imposta una stanza adiacente.
 	 *
@@ -44,20 +66,13 @@ public class Stanza implements Comparable<Stanza>{
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
 	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-		if(direzione == "nord" | direzione == "sud" | direzione == "est" | direzione == "ovest") {
-			this.stanzeAdiacenti.put(direzione, stanza);
-			if(direzione == "nord") {
-				stanza.getMapStanzeAdiacenti().put("sud", this);
-			}
-			if(direzione == "sud") {
-				stanza.getMapStanzeAdiacenti().put("nord", this);
-			}
-			if(direzione == "est") {
-				stanza.getMapStanzeAdiacenti().put("ovest", this);
-			}
-			if(direzione == "ovest") {
-				stanza.getMapStanzeAdiacenti().put("est", this);
-			}
+		try {
+			Direzione direzioneEnum = Direzione.valueOf(direzione.toUpperCase());
+			this.stanzeAdiacenti.put(direzioneEnum, stanza);
+			stanza.getMapStanzeAdiacenti().put(direzioneEnum.opposta(), this);
+		}
+		catch (IllegalArgumentException e){
+			return;
 		}
 	}
 
@@ -66,7 +81,13 @@ public class Stanza implements Comparable<Stanza>{
 	 * @param direzione
 	 */
 	public Stanza getStanzaAdiacente(String direzione) {
-		return this.stanzeAdiacenti.get(direzione);
+		try {
+			Direzione direzioneEnum = Direzione.valueOf(direzione.toUpperCase());
+			return this.stanzeAdiacenti.get(direzioneEnum);
+		}
+		catch (IllegalArgumentException e){
+			return null;
+		}		
 	}
 
 	/**
@@ -114,8 +135,8 @@ public class Stanza implements Comparable<Stanza>{
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
 		risultato.append("\nUscite: ");	
-		for(String direzione : this.stanzeAdiacenti.keySet()) {
-			risultato.append(" " + direzione);
+		for(Direzione direzione : this.stanzeAdiacenti.keySet()) {
+			risultato.append(" " + direzione.toString().toLowerCase());
 		}
 		risultato.append("\nAttrezzi nella stanza: ");	
 		for (String attrezzo : this.attrezzi.keySet()) {
@@ -149,11 +170,7 @@ public class Stanza implements Comparable<Stanza>{
 	}
 	
 	public int getNumeroAttrezzi() {
-		int count = 0;
-		for(String attrezzo : this.attrezzi.keySet()) {
-			count++;
-		}
-		return count;
+		return this.attrezzi.keySet().size();
 	}
 
 	/**
@@ -185,11 +202,13 @@ public class Stanza implements Comparable<Stanza>{
 
 	public List<String> getDirezioni() {
 		List<String> direzioni = new ArrayList<String>();
-		direzioni.addAll(this.stanzeAdiacenti.keySet());
+		for(Direzione direzioneEnum : this.stanzeAdiacenti.keySet()) {
+			direzioni.add(direzioneEnum.toString().toLowerCase());
+		}
 		return direzioni;
 	}
 
-	public Map<String, Stanza> getMapStanzeAdiacenti() {
+	public Map<Direzione, Stanza> getMapStanzeAdiacenti() {
 		return this.stanzeAdiacenti;
 	}
 

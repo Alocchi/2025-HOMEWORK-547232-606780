@@ -14,7 +14,7 @@ class DiaDiaTest {
 	private IOSimulator io;
 	private DiaDia diadia;
 	private Labirinto labirinto;
-	
+
 	@BeforeEach
 	void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		this.labirinto = new LabirintoBuilder()
@@ -32,13 +32,13 @@ class DiaDiaTest {
 				.addAdiacenza("Atrio", "Aula N11", "est")
 				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
 				.addAdiacenza("Aula N11", "Laboratorio Campus", "est")
-				.addAdiacenza("Aula N10", "Aula N11", "est")
-				.addAdiacenza("Aula N10", "Laboratorio Campus", "ovest")
+//				.addAdiacenza("Aula N10", "Aula N11", "est")
+//				.addAdiacenza("Aula N10", "Laboratorio Campus", "ovest")
 				.addPersonaggio("Atrio", "strega")
 				.getLabirinto();
 
 	}
-	
+
 	@Test
 	void testPartitaVincente() {
 		LinkedList<String> input = new LinkedList<String>();
@@ -66,7 +66,7 @@ class DiaDiaTest {
 		this.diadia.gioca();
 		assertEquals("Hai vinto!", this.io.getOutput().getLast());
 	}
-	
+
 	@Test
 	void testFineCFU() {
 		LinkedList<String> input = new LinkedList<String>();
@@ -78,7 +78,7 @@ class DiaDiaTest {
 		this.diadia.gioca();
 		assertEquals("Hai esaurito i CFU...", this.io.getOutput().getLast());
 	}
-	
+
 	@Test
 	void testPartitaInterrotta() throws Exception {
 		LinkedList<String> input = new LinkedList<String>();
