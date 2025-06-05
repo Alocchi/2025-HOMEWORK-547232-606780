@@ -95,8 +95,6 @@ public class DiaDia {
 				.addAdiacenza("Atrio", "Aula N11", "est")
 				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
 				.addAdiacenza("Aula N11", "Laboratorio Campus", "est")
-//				.addAdiacenza("Aula N10", "Aula N11", "est")
-//				.addAdiacenza("Aula N10", "Laboratorio Campus", "ovest")
 				.addPersonaggio("Atrio", "cane")
 				.getLabirinto();
 		
