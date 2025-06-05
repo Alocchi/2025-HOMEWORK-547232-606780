@@ -2,6 +2,8 @@ package it.uniroma3.diadia.giocatore;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -87,7 +89,7 @@ class BorsaTest {
 	}
 	
 	@Test
-	void  testContenutoOrdinatoPerPesoBorsaVuota() {
+	void  testContenutoOrdinatoPerPesoBorsaVuota() throws FileNotFoundException, IOException {
 		Borsa borsaVuota = new Borsa();
 		List<Attrezzo> lista = borsaVuota.getContenutoOrdinatoPerPeso();
 		Iterator<Attrezzo> it = lista.iterator();
@@ -103,7 +105,7 @@ class BorsaTest {
 	}
 	
 	@Test
-	void testContenutoOrdinatoPerNomeBorsaVuota() {
+	void testContenutoOrdinatoPerNomeBorsaVuota() throws FileNotFoundException, IOException {
 		Borsa borsaVuota = new Borsa();
 		SortedSet<Attrezzo> set = borsaVuota.getContenutoOrdinatoPerNome();
 		Iterator<Attrezzo> it = set.iterator();
@@ -133,7 +135,7 @@ class BorsaTest {
 	}
 	
 	@Test
-	void testContenutoRaggruppatoPerPesoBorsaVuota() {
+	void testContenutoRaggruppatoPerPesoBorsaVuota() throws FileNotFoundException, IOException {
 		Borsa borsaVuota = new Borsa();
 		Map<Integer,Set<Attrezzo>> mappa = borsaVuota.getContenutoRaggruppatoPerPeso();
 		
@@ -155,7 +157,7 @@ class BorsaTest {
 	}
 	
 	@Test
-	void testGetSortedSetOrdinatoPerPesoBorsaVuota() {
+	void testGetSortedSetOrdinatoPerPesoBorsaVuota() throws FileNotFoundException, IOException {
 		Borsa borsaVuota = new Borsa();
 		SortedSet<Attrezzo> set = borsaVuota.getSortedSetOrdinatoPerPeso();
 		Iterator<Attrezzo> it = set.iterator();

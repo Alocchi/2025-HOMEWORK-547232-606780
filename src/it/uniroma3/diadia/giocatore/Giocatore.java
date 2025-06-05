@@ -1,19 +1,38 @@
 package it.uniroma3.diadia.giocatore;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 public class Giocatore {
 
-	static final private int CFU_INIZIALI = 20;
+	Properties props = new Properties();
 	private int cfu;
 	private Borsa borsa;
 	
 	public Giocatore(int pesoMax) {
-		this.cfu = CFU_INIZIALI;
-		this.borsa = new Borsa(pesoMax);
+		try(FileInputStream input = new FileInputStream("diadia.properties")){
+			props.load(input);
+			String cfuIniziali = props.getProperty("cfu_iniziali");
+			this.cfu = Integer.parseInt(cfuIniziali);
+			this.borsa = new Borsa(pesoMax);
+		}
+		catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
-	public Giocatore() {
-		this.cfu = CFU_INIZIALI;
-		this.borsa = new Borsa();
+	public Giocatore() throws FileNotFoundException, IOException {
+		try(FileInputStream input = new FileInputStream("diadia.properties")){
+			props.load(input);
+			String cfuIniziali = props.getProperty("cfu_iniziali");
+			this.cfu = Integer.parseInt(cfuIniziali);
+			this.borsa = new Borsa();
+		}
+		catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public int getCfu() {

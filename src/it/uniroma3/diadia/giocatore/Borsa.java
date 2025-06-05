@@ -1,5 +1,8 @@
 package it.uniroma3.diadia.giocatore;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -7,6 +10,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
@@ -15,13 +19,21 @@ import java.util.TreeSet;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Borsa {
-
-	public final static int DEFAULT_PESO_MAX_BORSA = 10;
+	
+	Properties props = new Properties();
 	private int pesoMax;
 	private Map<String, Attrezzo> attrezzi;
 	
-	public Borsa() {
-		this(DEFAULT_PESO_MAX_BORSA);
+	public Borsa() throws FileNotFoundException, IOException {
+		try(FileInputStream input = new FileInputStream("diadia.properties")){
+			props.load(input);
+			String pesoMassimo = props.getProperty("peso_max_borsa");
+			this.pesoMax = Integer.parseInt(pesoMassimo);
+			this.attrezzi = new HashMap<String, Attrezzo>();
+		}
+		catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public Borsa(int pesoMax) {

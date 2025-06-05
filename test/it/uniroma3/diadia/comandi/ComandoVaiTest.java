@@ -2,6 +2,9 @@ package it.uniroma3.diadia.comandi;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +13,6 @@ import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 class ComandoVaiTest {
 
@@ -21,7 +23,7 @@ class ComandoVaiTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		this.comando = new ComandoVai();
-		Labirinto bilocale = new LabirintoBuilder()
+		Labirinto bilocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
 				.addAttrezzo("letto",10, "camera") 
@@ -52,8 +54,8 @@ class ComandoVaiTest {
 	}
 	
 	@Test
-	void testVaiMonolocale() {
-		Labirinto monolocale = new LabirintoBuilder()
+	void testVaiMonolocale() throws FileNotFoundException, IOException {
+		Labirinto monolocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("salotto")
 				.getLabirinto();

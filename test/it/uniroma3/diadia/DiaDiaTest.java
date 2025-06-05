@@ -2,12 +2,13 @@ package it.uniroma3.diadia;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 class DiaDiaTest {
 
@@ -17,7 +18,7 @@ class DiaDiaTest {
 
 	@BeforeEach
 	void setUp() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		this.labirinto = new LabirintoBuilder()
+		this.labirinto = Labirinto.newBuilder()
 				.addStanzaBloccata("Atrio", "nord", "chiave")
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("osso", 1, "Atrio")
@@ -38,7 +39,7 @@ class DiaDiaTest {
 	}
 
 	@Test
-	void testPartitaVincente() {
+	void testPartitaVincente() throws FileNotFoundException, IOException {
 		LinkedList<String> input = new LinkedList<String>();
 		input.add("vai sud");
 		input.add("prendi lanterna");
@@ -66,7 +67,7 @@ class DiaDiaTest {
 	}
 
 	@Test
-	void testFineCFU() {
+	void testFineCFU() throws FileNotFoundException, IOException {
 		LinkedList<String> input = new LinkedList<String>();
 		for(int i = 0; i < 20; i++) {
 			input.add("vai est");

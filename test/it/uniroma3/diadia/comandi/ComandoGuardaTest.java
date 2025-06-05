@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class ComandoGuardaTest {
@@ -21,7 +20,7 @@ class ComandoGuardaTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		this.comando = new ComandoGuarda();
-		Labirinto monolocale = new LabirintoBuilder()
+		Labirinto monolocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("salotto")
 				.getLabirinto();
@@ -34,7 +33,7 @@ class ComandoGuardaTest {
 	@Test
 	void testGuarda() {
 		this.comando.esegui(partita, io);
-		assertEquals("salotto\nUscite: \nAttrezzi nella stanza: attrezzo \nCFU rimanenti: 20\nBorsa vuota", this.io.getOutput().getFirst());
+		assertEquals("salotto\nUscite:\nAttrezzi nella stanza: attrezzo \nCFU rimanenti: 20\nBorsa vuota", this.io.getOutput().getFirst());
 	}
 		
 }

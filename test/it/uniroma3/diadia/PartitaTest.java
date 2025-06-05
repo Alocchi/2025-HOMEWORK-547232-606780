@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 class PartitaTest {
 	
@@ -14,7 +13,7 @@ class PartitaTest {
 
 	@BeforeEach
 	void setUp() throws Exception{
-		Labirinto bilocale = new LabirintoBuilder()
+		Labirinto bilocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
 				.addAttrezzo("letto",10, "camera") 

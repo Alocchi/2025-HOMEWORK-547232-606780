@@ -61,6 +61,6 @@ class StanzaBloccataTest {
 	
 	@Test
 	void testDescrizione() {
-		assertEquals("n11\nUscite:  nord\nAttrezzi nella stanza: \nla direzione nord è bloccata", stanzaBloccata.getDescrizione());
+		assertEquals("n11\nUscite: nord\nAttrezzi nella stanza: \nla direzione nord è bloccata", stanzaBloccata.getDescrizione());
 	}
 }

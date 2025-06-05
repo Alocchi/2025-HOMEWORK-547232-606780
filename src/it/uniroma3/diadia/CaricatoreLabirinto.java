@@ -3,8 +3,8 @@ package it.uniroma3.diadia;
 import java.io.*;
 import java.util.*;
 
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
-import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 
 public class CaricatoreLabirinto {
 
@@ -28,7 +28,7 @@ public class CaricatoreLabirinto {
 
 	/* prefisso della riga contenente le specifiche dei collegamenti tra stanza nel formato <nomeStanzaDa> <direzione> <nomeStanzaA> */
 	private static final String USCITE_MARKER = "Uscite: ";
-	
+
 	private static final String PERSONAGGI_MARKER = "Personaggi: ";
 
 
@@ -50,7 +50,7 @@ public class CaricatoreLabirinto {
 
 	public CaricatoreLabirinto(String nomeFile) throws FileNotFoundException {
 		this.reader = new LineNumberReader(new FileReader(nomeFile));
-		this.builder = new LabirintoBuilder();
+		this.builder = Labirinto.newBuilder();
 	}
 
 	public void carica() throws FormatoFileNonValidoException, InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -90,7 +90,7 @@ public class CaricatoreLabirinto {
 			this.builder.addStanza(nomeStanza);
 		}
 	}
-	
+
 	private void leggiECreaStanzeBuie() throws FormatoFileNonValidoException  {
 		String nomiStanzeBuie = this.leggiRigaCheCominciaPer(STANZE_BUIE_MARKER);
 
@@ -106,14 +106,14 @@ public class CaricatoreLabirinto {
 			this.builder.addStanzaBuia(nomeStanza, nomeAttrezzo);
 		}
 	}
-	
+
 	private void leggiECreaStanzeMagiche() throws FormatoFileNonValidoException  {
 		String nomiStanzeMagiche = this.leggiRigaCheCominciaPer(STANZE_MAGICHE_MARKER);
 		for(String nomeStanza : separaStringheAlleVirgole(nomiStanzeMagiche)) {
 			this.builder.addStanzaMagica(nomeStanza);
 		}
 	}
-	
+
 	private void leggiECreaStanzeBloccate() throws FormatoFileNonValidoException  {
 		String nomiStanzeBloccate = this.leggiRigaCheCominciaPer(STANZE_BLOCCATE_MARKER);
 
@@ -204,7 +204,7 @@ public class CaricatoreLabirinto {
 			impostaUscita(stanzaPartenza, dir, stanzaDestinazione);
 		}
 	}
-	
+
 	private void leggiEImpostaPersonaggi() throws FormatoFileNonValidoException, InstantiationException, IllegalAccessException, ClassNotFoundException  {
 		String nomiPersonaggi = this.leggiRigaCheCominciaPer(PERSONAGGI_MARKER);
 
@@ -216,7 +216,7 @@ public class CaricatoreLabirinto {
 				nomePersonaggio = scannerLinea.next();
 				check(scannerLinea.hasNext(),msgTerminazionePrecoce("il nome della stanza in cui collocare l'attrezzo."));
 				nomeStanza = scannerLinea.next();
-				
+
 			}
 			this.builder.addPersonaggio(nomeStanza, nomePersonaggio);
 		}
@@ -238,11 +238,7 @@ public class CaricatoreLabirinto {
 			throw new FormatoFileNonValidoException("Formato file non valido [" + this.reader.getLineNumber() + "] "+messaggioErrore);		
 	}
 
-		public Stanza getStanzaIniziale() {
-			return this.builder.getEntrata();
-		}
-	
-		public Stanza getStanzaVincente() {
-			return this.builder.getUscita();
-		}
+	public Labirinto getLabirinto() {
+		return this.builder.getLabirinto();
+	}
 }

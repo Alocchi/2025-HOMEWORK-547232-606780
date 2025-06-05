@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class ComandoFineTest {
@@ -21,7 +20,7 @@ class ComandoFineTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		this.comando = new ComandoFine();
-		Labirinto monolocale = new LabirintoBuilder()
+		Labirinto monolocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("salotto")
 				.getLabirinto();

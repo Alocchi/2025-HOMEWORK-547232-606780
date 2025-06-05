@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.ComandoInteragisci;
@@ -23,7 +22,7 @@ class StregaTest {
 	
 	@BeforeEach
 	void setUp() throws Exception{
-		Labirinto casa = new LabirintoBuilder()
+		Labirinto casa = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
 				.addAttrezzo("letto",10, "camera")
