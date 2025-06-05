@@ -1,5 +1,7 @@
 package it.uniroma3.diadia;
 
+import java.io.FileNotFoundException;
+
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
@@ -77,26 +79,10 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}
 
-	public static void main(String[] argc) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public static void main(String[] argc) throws InstantiationException, IllegalAccessException, ClassNotFoundException, FileNotFoundException, FormatoFileNonValidoException {
 		IO io = new IOConsole();
 		
-		Labirinto labirinto = new LabirintoBuilder()
-				.addStanzaBloccata("Atrio", "nord", "chiave")
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("osso", 1, "Atrio")
-				.addStanzaVincente("Biblioteca")
-				.addStanza("Aula N10")
-				.addAttrezzo("lanterna", 3, "Aula N10")
-				.addStanzaBuia("Aula N11", "lanterna")
-				.addAttrezzo("evaihc", 2, "Aula N11")
-				.addStanzaMagica("Laboratorio Campus")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Atrio", "Aula N10", "sud")
-				.addAdiacenza("Atrio", "Aula N11", "est")
-				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
-				.addAdiacenza("Aula N11", "Laboratorio Campus", "est")
-				.addPersonaggio("Atrio", "cane")
-				.getLabirinto();
+		Labirinto labirinto = new Labirinto("Labirinto.txt");
 		
 		DiaDia gioco = new DiaDia(labirinto, io);
 		gioco.gioca();

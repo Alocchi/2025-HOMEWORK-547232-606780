@@ -134,7 +134,7 @@ public class Stanza implements Comparable<Stanza>{
 	public String toString() {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
-		risultato.append("\nUscite: ");	
+		risultato.append("\nUscite:");	
 		for(Direzione direzione : this.stanzeAdiacenti.keySet()) {
 			risultato.append(" " + direzione.toString().toLowerCase());
 		}

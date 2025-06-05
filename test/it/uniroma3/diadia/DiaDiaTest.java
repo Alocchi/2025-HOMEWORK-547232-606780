@@ -32,7 +32,7 @@ class DiaDiaTest {
 				.addAdiacenza("Atrio", "Aula N11", "est")
 				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
 				.addAdiacenza("Aula N11", "Laboratorio Campus", "est")
-				.addPersonaggio("Atrio", "strega")
+				.addPersonaggio("Atrio", "cane")
 				.getLabirinto();
 
 	}

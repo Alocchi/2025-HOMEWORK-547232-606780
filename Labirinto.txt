@@ -1,0 +1,9 @@
+Stanze: biblioteca, N10
+Stanze buie: N11 lanterna
+Stanze magiche: laboratorioCampus
+Stanze bloccate: atrio nord chiave,
+Inizio: atrio
+Vincente: biblioteca
+Attrezzi: osso 1 atrio, lanterna 3 N10, evaihc 2 N11
+Uscite: atrio nord biblioteca, atrio sud N10, atrio est N11, atrio ovest laboratorioCampus, N11 est laboratorioCampus
+Personaggi: cane atrio

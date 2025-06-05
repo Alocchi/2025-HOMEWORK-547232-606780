@@ -9,19 +9,23 @@ public class Labirinto {
 	private Stanza entrata;
 	private Stanza uscita;
 
-//	public Labirinto(String nomeFile) throws FileNotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, FormatoFileNonValidoException {
-//		CaricatoreLabirinto c = new CaricatoreLabirinto(nomeFile);
-//		c.carica();
-//	}
-	
+	public Labirinto(String nomeFile) throws FileNotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, FormatoFileNonValidoException {
+		CaricatoreLabirinto c = new CaricatoreLabirinto(nomeFile);
+		c.carica();
+		this.entrata = c.getStanzaIniziale();
+		this.uscita = c.getStanzaVincente();
+	}
+
+	public Labirinto() { }
+
 	public void setEntrata(Stanza entrata) {
 		this.entrata = entrata;
 	}
-	
+
 	public void setUscita(Stanza uscita) {
 		this.uscita = uscita;
 	}
-	
+
 	public Stanza getEntrata() {
 		return this.entrata;
 	}

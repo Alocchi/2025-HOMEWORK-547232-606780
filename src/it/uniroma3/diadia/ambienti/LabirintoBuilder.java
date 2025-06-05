@@ -8,32 +8,38 @@ import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 public class LabirintoBuilder {
 	
-	private Labirinto labirinto;
+	//private Labirinto labirinto;
+	private Stanza entrata;
+	private Stanza uscita;
 	private Map<String, Stanza> stanze;
 	
 	public LabirintoBuilder() {
-		this.labirinto = new Labirinto();
+		//this.labirinto = new Labirinto();
 		this.stanze = new HashMap<String, Stanza>();
 	}
 
 	public LabirintoBuilder addStanzaIniziale(String nome) {
 		if(this.stanze.containsKey(nome)) {
-			this.labirinto.setEntrata(this.stanze.get(nome));
+			//this.labirinto.setEntrata(this.stanze.get(nome));
+			this.entrata = this.stanze.get(nome);
 		}
 		else {
 			this.addStanza(nome);
-			this.labirinto.setEntrata(this.stanze.get(nome));
+			//this.labirinto.setEntrata(this.stanze.get(nome));
+			this.entrata = this.stanze.get(nome);
 		}
 		return this;
 	}
 	
 	public LabirintoBuilder addStanzaVincente(String nome) {
 		if(this.stanze.containsKey(nome)) {
-			this.labirinto.setUscita(this.stanze.get(nome));
+			//this.labirinto.setUscita(this.stanze.get(nome));
+			this.uscita = this.stanze.get(nome);
 		}
 		else {
 			this.addStanza(nome);
-			this.labirinto.setUscita(this.stanze.get(nome));
+			//this.labirinto.setUscita(this.stanze.get(nome));
+			this.uscita = this.stanze.get(nome);
 		}
 		return this;
 	}
@@ -94,7 +100,18 @@ public class LabirintoBuilder {
 	}
 	
 	public Labirinto getLabirinto() {
-		return this.labirinto;
+		Labirinto labirinto = new Labirinto();
+		labirinto.setEntrata(entrata);
+		labirinto.setUscita(uscita);
+		return labirinto;
+	}
+	
+	public Stanza getEntrata() {
+		return this.entrata;
+	}
+	
+	public Stanza getUscita() {
+		return this.uscita;
 	}
 
 	public Map<String, Stanza> getListaStanze() {
