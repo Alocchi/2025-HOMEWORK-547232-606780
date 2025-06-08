@@ -25,7 +25,7 @@ public class Borsa {
 	private Map<String, Attrezzo> attrezzi;
 	
 	public Borsa() throws FileNotFoundException, IOException {
-		try(FileInputStream input = new FileInputStream("diadia.properties")){
+		try(FileInputStream input = new FileInputStream("resources/diadia.properties")){
 			props.load(input);
 			String pesoMassimo = props.getProperty("peso_max_borsa");
 			this.pesoMax = Integer.parseInt(pesoMassimo);

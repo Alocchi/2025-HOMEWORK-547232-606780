@@ -85,7 +85,7 @@ public class DiaDia {
 		try {
 			IO io = new IOConsole(scannerDiLinee);
 			
-			CaricatoreLabirinto caricatore = new CaricatoreLabirinto("Labirinto.txt");
+			CaricatoreLabirinto caricatore = new CaricatoreLabirinto("resources/labirinto.txt");
 			caricatore.carica();
 			Labirinto labirinto = caricatore.getLabirinto();
 			

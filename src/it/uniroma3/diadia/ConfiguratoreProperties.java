@@ -9,7 +9,7 @@ public class ConfiguratoreProperties {
 		Properties prop = new Properties();
 		prop.setProperty("cfu_iniziali", "20");
 		prop.setProperty("peso_max_borsa", "10");
-		prop.store(new FileWriter("diadia.properties"),
+		prop.store(new FileWriter("resources/diadia.properties"),
 				"Configurazione del gioco DIADIA");
 		prop.storeToXML(new FileOutputStream("diadia.xml"),
 				"Configurazione del gioco DIADIA");

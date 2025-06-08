@@ -12,7 +12,7 @@ public class Giocatore {
 	private Borsa borsa;
 	
 	public Giocatore(int pesoMax) {
-		try(FileInputStream input = new FileInputStream("diadia.properties")){
+		try(FileInputStream input = new FileInputStream("resources/diadia.properties")){
 			props.load(input);
 			String cfuIniziali = props.getProperty("cfu_iniziali");
 			this.cfu = Integer.parseInt(cfuIniziali);
