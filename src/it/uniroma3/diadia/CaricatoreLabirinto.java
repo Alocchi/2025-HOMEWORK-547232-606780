@@ -52,6 +52,11 @@ public class CaricatoreLabirinto {
 		this.reader = new LineNumberReader(new FileReader(nomeFile));
 		this.builder = Labirinto.newBuilder();
 	}
+	
+	public CaricatoreLabirinto(Reader reader) {
+		this.reader = new LineNumberReader(reader);
+		this.builder = Labirinto.newBuilder();
+	}
 
 	public void carica() throws FormatoFileNonValidoException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		try {

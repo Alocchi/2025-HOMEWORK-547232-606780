@@ -18,5 +18,10 @@ public class StanzaBuia extends Stanza{
 			return("qui c'è buio pesto");
 		}
 	}
+	
+	@Override
+	public boolean isBuia() {
+		return true;
+	}
 
 }

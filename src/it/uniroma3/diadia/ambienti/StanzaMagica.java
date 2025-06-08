@@ -34,6 +34,7 @@ class StanzaMagica extends Stanza {
 		return attrezzo;
 	}
 
+	@Override
 	public boolean isMagica() {
 		return true;
 	}

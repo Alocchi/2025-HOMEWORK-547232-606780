@@ -229,4 +229,15 @@ public class Stanza implements Comparable<Stanza>{
 		return this.getNumeroAttrezzi() - that.getNumeroAttrezzi();
 	}
 
+	public boolean isMagica() {
+		return false;
+	}
+	
+	public boolean isBuia() {
+		return false;
+	}
+	
+	public boolean isBloccata() {
+		return false;
+	}
 }

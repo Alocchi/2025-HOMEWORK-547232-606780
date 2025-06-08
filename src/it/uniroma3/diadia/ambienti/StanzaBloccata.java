@@ -35,4 +35,9 @@ public class StanzaBloccata extends Stanza{
 		return risultato.toString();
 	}
 	
+	@Override
+	public boolean isBloccata() {
+		return true;
+	}
+	
 }
